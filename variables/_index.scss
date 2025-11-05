@@ -1,7 +1,6 @@
 @charset "utf-8";
 
-@forward 'border-radius';
-@forward 'breakpoints';
-@forward 'colors';
-@forward 'typo';
+@forward 'colors';      // 원시 색상 팔레트
+@forward 'typo';        // Typography 변수 (font-size, font-weight)
+@forward 'spacing';     // Spacing 변수
 

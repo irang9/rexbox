@@ -1,54 +1,86 @@
 @charset "utf-8";
-@use '../variables' as *;
 
+// ============================================
+// Breakpoints
+// ============================================
+// 반응형 디자인을 위한 breakpoint 값과 mixin
+// 변수와 mixin을 함께 관리하여 응집도를 높였습니다.
+
+// ============================================
+// Breakpoint Variables
+// ============================================
+$mobile-xxs: 320px;
+$mobile-xs: 360px;
+$mobile-sm: 480px;
+$mobile: 576px;
+$desktop-xs: 768px;
+$desktop-sm: 992px;
+$desktop: 1024px;
+$desktop-lg: 1200px;
+$desktop-xl: 1400px;
+
+// ============================================
+// Max-width Mixins (Desktop First)
+// ============================================
 
 @mixin mobile-xxs { // 진짜 제일 작은사이즈 존재하는 경우
     @media (max-width: #{$mobile-xxs - 1px}) {
         @content;
     }
 }
+
 @mixin mobile-xs { // 미니사이즈 존재하는 경우
     @media (max-width: #{$mobile-xs - 1px}) {
         @content;
     }
 }
+
 @mixin mobile-sm { // 작은 모바일 사이즈까지 적용
     @media (max-width: #{$mobile-sm - 1px}) {
         @content;
     }
 }
+
 @mixin mobile { // 일반 모바일 사이즈까지 적용
     @media (max-width: #{$mobile - 1px}) {
         @content;
     }
 }
-@mixin desktop-xs { // 좀 큰 모바일 사이즈까지 적용 // 구 mobile-lg
+
+@mixin desktop-xs { // 좀 큰 모바일 사이즈까지 적용
     @media (max-width: #{$desktop-xs - 1px}) {
         @content;
     }
 }
+
 @mixin desktop-sm { // 구 tablet
     @media (max-width: #{$desktop-sm - 1px}) {
         @content;
     }
 }
+
 @mixin desktop {
     @media (max-width: #{$desktop - 1px}) {
         @content;
     }
 }
+
 @mixin desktop-lg {
     @media (max-width: #{$desktop-lg}) {
         @content;
     }
 }
+
 @mixin desktop-xl {
     @media (max-width: #{$desktop-xl}) {
         @content;
     }
 }
 
-// Mobile First Approach
+// ============================================
+// Min-width Mixins (Mobile First)
+// ============================================
+
 @mixin from-mobile-xs {
     @media (min-width: #{$mobile-xs}) {
         @content;

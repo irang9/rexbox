@@ -1,5 +1,8 @@
 @charset "utf-8";
-@use '../variables' as *;
+
+// ============================================
+// Transform Mixins
+// ============================================
 
 // Transforms : Browser Prefixes
 @mixin transform($transforms) {

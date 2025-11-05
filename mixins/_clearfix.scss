@@ -1,5 +1,8 @@
 @charset "utf-8";
-@use '../variables' as *;
+
+// ============================================
+// Clearfix Mixin
+// ============================================
 
 // scss-docs-start clearfix
 @mixin clearfix() {

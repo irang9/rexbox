@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+.position {
+    &-static { position:relative; }
+    &-relative { position:relative; }
+    &-absolute { position:relative; }
+    &-fixed { position:relative; }
+    &-sticky { position:relative; }
+}
+

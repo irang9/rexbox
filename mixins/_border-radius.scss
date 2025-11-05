@@ -1,7 +1,10 @@
 @charset "utf-8";
-@use '../variables' as *;
 
-// border-radius
+// ============================================
+// Border Radius Mixins
+// ============================================
+
+// Generic border-radius mixin (4개 코너 각각 지정 가능)
 @mixin border-radius($top-left:10px, $top-right:null, $bottom-right:null, $bottom-left:null){
     -webkit-border-radius: $top-left $top-right $bottom-right $bottom-left;
     -moz-border-radius: $top-left $top-right $bottom-right $bottom-left;
@@ -10,8 +13,7 @@
     -o-border-radius: $top-left $top-right $bottom-right $bottom-left;
 }
 
-
-// border-radius mixin
+// Base border-radius mixin (모든 코너 동일 값)
 @mixin border-radius-base($radius) {
     -webkit-border-radius: $radius;
     -moz-border-radius: $radius;
@@ -20,40 +22,41 @@
     -o-border-radius: $radius;
 }
 
+// Predefined border-radius mixins
 @mixin border-radius-none {
-    @include border-radius-base($border-radius-none);
+    @include border-radius-base(0);
 }
 
 @mixin border-radius-sm {
-    @include border-radius-base($border-radius-sm);
+    @include border-radius-base(2px);
 }
 
 @mixin border-radius-default {
-    @include border-radius-base($border-radius-default);
+    @include border-radius-base(4px);
 }
 
 @mixin border-radius-md {
-    @include border-radius-base($border-radius-md);
+    @include border-radius-base(6px);
 }
 
 @mixin border-radius-lg {
-    @include border-radius-base($border-radius-lg);
+    @include border-radius-base(8px);
 }
 
 @mixin border-radius-xl {
-    @include border-radius-base($border-radius-xl);
+    @include border-radius-base(12px);
 }
 
 @mixin border-radius-2xl {
-    @include border-radius-base($border-radius-2xl);
+    @include border-radius-base(16px);
 }
 
 @mixin border-radius-3xl {
-    @include border-radius-base($border-radius-3xl);
+    @include border-radius-base(24px);
 }
 
 @mixin border-radius-full {
-    @include border-radius-base($border-radius-full);
+    @include border-radius-base(999px);
 }
 
 

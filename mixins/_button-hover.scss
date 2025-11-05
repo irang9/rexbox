@@ -1,5 +1,8 @@
 @charset "utf-8";
-@use '../variables' as *;
+
+// ============================================
+// Button Hover Mixin
+// ============================================
 
 // button hover 
 @mixin button-hover($brightness) {

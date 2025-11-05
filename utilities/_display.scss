@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+.d {
+    &-flex {
+        display:flex;
+    }
+    &-none {
+        display:none;
+    }
+    &-block {
+        display:block;
+    }
+    &-inline-block {
+        display:inline-block;
+    }
+}
+

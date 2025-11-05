@@ -1,28 +1,31 @@
 @charset "utf-8";
 
-// ------- typo
-$font-basic : "Spoqa Han Sans Neo", "Noto Sans KR", "Nanum Gothic", "MalgunGothic", Dotum, Lato, Roboto, Arial, sans-serif;
-$font-monospace :"Spoqa Han Sans Neo", "Noto Sans KR", "Nanum Gothic", "MalgunGothic", Dotum, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-$font-popup : SCoreDream, "Spoqa Han Sans Neo", "Noto Sans KR", "Nanum Gothic", "MalgunGothic", Dotum, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-$font-title : Outfit, "Spoqa Han Sans Neo", "Noto Sans KR", "Nanum Gothic", "MalgunGothic", Dotum, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-$font-title-2 : "GmarketSans", "Spoqa Han Sans Neo", "Noto Sans KR", "Nanum Gothic", "MalgunGothic", Dotum, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+// ============================================
+// Typography Variables (공통 사용)
+// ============================================
+// 폰트 패밀리 변수는 fonts/_variables.scss에서 관리합니다.
 
+@use "sass:math";
 
-$font-size-3xs:10px;
-$font-size-2xs:11px;
-$font-size-xs:12px;
-$font-size-sm:14px;
-$font-size-base:16px;
-$font-size-lg:18px;
-$font-size-xl:20px;
-$font-size-2xl:24px;
-$font-size-3xl:30px;
-$font-size-4xl:36px;
-$font-size-5xl:48px;
-$font-size-6xl:60px;
-$font-size-7xl:72px;
-$font-size-8xl:96px;
-$font-size-9xl:128px;
+@function rem($px) {
+    @return math.div($px, 16) * 1rem;
+}
+
+$font-size-3xs:rem(10);
+$font-size-2xs:rem(11);
+$font-size-xs:rem(12);
+$font-size-sm:rem(14);
+$font-size-base:rem(16);
+$font-size-lg:rem(18);
+$font-size-xl:rem(20);
+$font-size-2xl:rem(24);
+$font-size-3xl:rem(30);
+$font-size-4xl:rem(36);
+$font-size-5xl:rem(48);
+$font-size-6xl:rem(60);
+$font-size-7xl:rem(72);
+$font-size-8xl:rem(96);
+$font-size-9xl:rem(128);
 
 $font-weight-light:300;
 $font-weight-normal:400;
