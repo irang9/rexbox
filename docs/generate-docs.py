@@ -350,12 +350,17 @@ def get_navigation(current_page: str = "") -> str:
 
 def generate_html_page(title: str, content: str, current_page: str = "") -> str:
     """HTML 페이지 생성 (공통 헤더/푸터 포함)"""
+    # SVG favicon (data URI)
+    favicon_svg = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="%231e293b"/%3E%3Ctext x="50" y="70" font-family="monospace" font-size="60" text-anchor="middle" fill="white"%3ES%3C/text%3E%3C/svg%3E'
+    
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title} - Shared SCSS</title>
+    <link rel="icon" type="image/svg+xml" href="{favicon_svg}">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     {get_common_styles()}
 </head>
 <body>
