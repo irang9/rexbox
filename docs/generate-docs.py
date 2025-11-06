@@ -22,10 +22,10 @@ FONTS_VARIABLES_FILE = ROOT_DIR / "fonts" / "_variables.scss"
 NAV_ITEMS = [
     {"title": "홈", "url": "index.html"},
     {"title": "Colors", "url": "colors.html"},
-    {"title": "Breakpoints", "url": "breakpoints.html"},
     {"title": "Typography", "url": "typography.html"},
-    {"title": "Spacing", "url": "spacing.html"},
     {"title": "Fonts", "url": "fonts.html"},
+    {"title": "Breakpoints", "url": "breakpoints.html"},
+    {"title": "Spacing", "url": "spacing.html"},
     {"title": "Mixins", "url": "mixins.html"},
 ]
 
