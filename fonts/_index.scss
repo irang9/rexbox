@@ -10,19 +10,20 @@
 // 필수 폰트 (모든 프로젝트에서 사용)
 // ============================================
 @forward 'spoqa';
-@forward 'google';
+@forward 'icons'; // 아이콘 폰트 (Material Icons)
 
 // ============================================
 // 선택적 폰트 (프로젝트에서 필요 시 직접 import)
 // ============================================
 // 사용 방법:
+// @use '../../shared-scss/fonts/google' as *;  // 텍스트 폰트 (Outfit)
 // @use '../../shared-scss/fonts/gmarket' as *;
 // @use '../../shared-scss/fonts/scoredream' as *;
 //
 // 또는 여러 개를 한 번에:
+// @use '../../shared-scss/fonts/google' as *;
 // @use '../../shared-scss/fonts/gmarket' as *;
 // @use '../../shared-scss/fonts/scoredream' as *;
 //
 // 참고: 통합 파일(@use '../../shared-scss' as *)을 사용할 때는
-// 필수 폰트(spoqa, Google Icons)만 자동으로 포함됩니다.
-
+// 필수 폰트(spoqa, icons)만 자동으로 포함됩니다.

@@ -29,7 +29,8 @@ shared-scss/
 ├── fonts/             # 폰트 파일들
 │   ├── _variables.scss # 폰트 패밀리 변수 (프로젝트별 오버라이드 가능)
 │   ├── _spoqa.scss   # Spoqa Han Sans Neo
-│   ├── _google.scss  # Google Fonts (Material Icons, Outfit)
+│   ├── _google.scss  # Google Fonts (텍스트 폰트: Outfit)
+│   ├── _icons.scss   # Google Material Icons (아이콘 폰트)
 │   ├── _gmarket.scss # Gmarket Sans
 │   ├── _scoredream.scss # SCoreDream
 │   └── _index.scss   # 모든 폰트와 변수 통합
@@ -61,16 +62,18 @@ shared-scss/
 - `breakpoints`: breakpoint 변수와 mixin
 - `theme`: 의미 색상
 - `mixins`: 모든 mixin
-- `fonts`: 필수 폰트만 (spoqa, Google Icons) - 폰트 변수 포함
+- `fonts`: 필수 폰트만 (spoqa, icons) - 폰트 변수 포함
 - `base/reset`: CSS Reset 스타일
 - `utilities`: 모든 유틸리티 클래스
 
 **참고:**
-- fonts는 필수 폰트(spoqa, Google Icons)만 자동으로 포함됩니다
-- 선택적 폰트(gmarket, scoredream)는 프로젝트에서 직접 import하세요:
+- fonts는 필수 폰트(spoqa, icons)만 자동으로 포함됩니다
+- 선택적 폰트(google, gmarket, scoredream)는 프로젝트에서 직접 import하세요:
   ```scss
   @use '../../shared-scss' as *;
+  @use '../../shared-scss/fonts/google' as *;   // 텍스트 폰트 (Outfit) 필요 시 추가
   @use '../../shared-scss/fonts/gmarket' as *;  // 필요 시 추가
+  @use '../../shared-scss/fonts/scoredream' as *; // 필요 시 추가
   ```
 
 **장점:**
@@ -214,10 +217,11 @@ shared-scss/
 
 ### Fonts (폰트 파일들)
 
-- `_index.scss`: 필수 폰트(spoqa, Google Icons)와 폰트 변수를 포함
+- `_index.scss`: 필수 폰트(spoqa, icons)와 폰트 변수를 포함
 - `_variables.scss`: 폰트 패밀리 변수 (`$font-basic`, `$font-title` 등) - **프로젝트별 오버라이드 가능**
 - `_spoqa.scss`: Spoqa Han Sans Neo 폰트 import (필수)
-- `_google.scss`: Google Fonts (Material Icons, Outfit) import (필수)
+- `_icons.scss`: Google Material Icons 아이콘 폰트 import (필수)
+- `_google.scss`: Google Fonts 텍스트 폰트 (Outfit) import - 선택적
 - `_gmarket.scss`: Gmarket Sans 폰트 (@font-face 정의) - 선택적
 - `_scoredream.scss`: SCoreDream 폰트 (@font-face 정의) - 선택적
 
@@ -232,20 +236,22 @@ shared-scss/
 ```scss
 // 방법 1: 통합 파일 사용 (필수 폰트만 포함)
 @use '../../shared-scss' as *;
-// 결과: spoqa, google만 자동 포함
+// 결과: spoqa, icons만 자동 포함
 
 // 방법 2: fonts만 사용 (필수 폰트 포함)
 @use '../../shared-scss/fonts' as *;
-// 결과: spoqa, google만 포함
+// 결과: spoqa, icons만 포함
 
 // 방법 3: 선택적 폰트 추가
 @use '../../shared-scss' as *;
-@use '../../shared-scss/fonts/gmarket' as *;      // Gmarket 추가
-@use '../../shared-scss/fonts/scoredream' as *;   // SCoreDream 추가
+@use '../../shared-scss/fonts/google' as *;      // 텍스트 폰트 (Outfit) 추가
+@use '../../shared-scss/fonts/gmarket' as *;     // Gmarket 추가
+@use '../../shared-scss/fonts/scoredream' as *;  // SCoreDream 추가
 
 // 방법 4: 특정 폰트만 사용
 @use '../../shared-scss/fonts/spoqa' as *;
-@use '../../shared-scss/fonts/google' as *;
+@use '../../shared-scss/fonts/icons' as *;   // 아이콘 폰트 (Material Icons)
+@use '../../shared-scss/fonts/google' as *;  // 텍스트 폰트 (Outfit) - 선택적
 ```
 
 **프로젝트별 폰트 변수 커스터마이징:**
@@ -292,7 +298,7 @@ shared-scss/
 ## 사용 시나리오별 권장 방법
 
 - **대부분의 경우**: 통합 파일 사용 (`@use '../../shared-scss' as *`)
-  - 필수 폰트(spoqa, Google Icons)만 포함되어 최적화됨
+  - 필수 폰트(spoqa, icons)만 포함되어 최적화됨
   - base, utilities도 자동 포함
 
 - **CSS 파일 크기 최적화가 중요한 경우**: 개별 파일 사용
@@ -317,7 +323,9 @@ shared-scss/
 - **선택적 폰트가 필요한 경우**: 통합 파일 + 선택적 폰트 추가
   ```scss
   @use '../../shared-scss' as *;
+  @use '../../shared-scss/fonts/google' as *;   // 텍스트 폰트 (Outfit) 필요 시 추가
   @use '../../shared-scss/fonts/gmarket' as *;  // 필요 시 추가
+  @use '../../shared-scss/fonts/scoredream' as *; // 필요 시 추가
   ```
 
 - **유틸리티 클래스가 필요 없는 경우**: utilities 제외
@@ -343,7 +351,8 @@ shared-scss/
 - **특정 폰트만 필요한 경우**: fonts의 개별 파일만 import
   ```scss
   @use '../../shared-scss/fonts/spoqa' as *;
-  @use '../../shared-scss/fonts/google' as *;
+  @use '../../shared-scss/fonts/icons' as *;   // 아이콘 폰트 (Material Icons)
+  @use '../../shared-scss/fonts/google' as *;  // 텍스트 폰트 (Outfit) - 선택적
   ```
 
 - **테마 없이 원시 색상만 필요한 경우**: variables만 사용

@@ -25,7 +25,7 @@ NAV_ITEMS = [
     {"title": "Breakpoints", "url": "breakpoints.html"},
     {"title": "Typography", "url": "typography.html"},
     {"title": "Spacing", "url": "spacing.html"},
-    {"title": "Google Icons", "url": "fonts.html"},
+    {"title": "Fonts", "url": "fonts.html"},
     {"title": "Mixins", "url": "mixins.html"},
 ]
 
@@ -1183,7 +1183,7 @@ def generate_fonts_page() -> str:
     fonts = extract_fonts()
     
     content = """
-        <h1>Google Icons</h1>
+        <h1>Fonts</h1>
         <p class="subtitle">폰트 패밀리 변수 및 Google Material Icons</p>
         
         <div class="section">
@@ -1220,6 +1220,107 @@ def generate_fonts_page() -> str:
     content += """
                 </tbody>
             </table>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Google Material Icons</h2>
+            <p>다음 Material Icons 버전들이 사용 가능합니다:</p>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin-top: 24px; margin-bottom: 12px; color: #1e293b;">1. Material Icons (기본)</h3>
+            <p style="margin-bottom: 12px; color: #64748b;">클래스: <code class="code">material-icons</code></p>
+            <div style="margin-bottom: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <p style="margin-bottom: 8px;"><strong>사용 예시:</strong></p>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;span class="material-icons"&gt;home&lt;/span&gt;
+&lt;span class="material-icons"&gt;favorite&lt;/span&gt;
+&lt;span class="material-icons"&gt;settings&lt;/span&gt;</code></pre>
+                <p style="margin-top: 12px; margin-bottom: 8px;"><strong>실제 표시:</strong></p>
+                <div style="display: flex; gap: 16px; align-items: center; font-size: 24px;">
+                    <span class="material-icons" style="font-size: 24px;">home</span>
+                    <span class="material-icons" style="font-size: 24px;">favorite</span>
+                    <span class="material-icons" style="font-size: 24px;">settings</span>
+                </div>
+            </div>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin-top: 24px; margin-bottom: 12px; color: #1e293b;">2. Material Icons Outlined</h3>
+            <p style="margin-bottom: 12px; color: #64748b;">클래스: <code class="code">material-icons-outlined</code></p>
+            <div style="margin-bottom: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <p style="margin-bottom: 8px;"><strong>사용 예시:</strong></p>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;span class="material-icons-outlined"&gt;home&lt;/span&gt;
+&lt;span class="material-icons-outlined"&gt;favorite&lt;/span&gt;
+&lt;span class="material-icons-outlined"&gt;settings&lt;/span&gt;</code></pre>
+                <p style="margin-top: 12px; margin-bottom: 8px;"><strong>실제 표시:</strong></p>
+                <div style="display: flex; gap: 16px; align-items: center; font-size: 24px;">
+                    <span class="material-icons-outlined" style="font-size: 24px;">home</span>
+                    <span class="material-icons-outlined" style="font-size: 24px;">favorite</span>
+                    <span class="material-icons-outlined" style="font-size: 24px;">settings</span>
+                </div>
+            </div>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin-top: 24px; margin-bottom: 12px; color: #1e293b;">3. Material Icons Two Tone</h3>
+            <p style="margin-bottom: 12px; color: #64748b;">클래스: <code class="code">material-icons-two-tone</code></p>
+            <div style="margin-bottom: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <p style="margin-bottom: 8px;"><strong>사용 예시:</strong></p>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;span class="material-icons-two-tone"&gt;home&lt;/span&gt;
+&lt;span class="material-icons-two-tone"&gt;favorite&lt;/span&gt;
+&lt;span class="material-icons-two-tone"&gt;settings&lt;/span&gt;</code></pre>
+                <p style="margin-top: 12px; margin-bottom: 8px;"><strong>실제 표시:</strong></p>
+                <div style="display: flex; gap: 16px; align-items: center; font-size: 24px;">
+                    <span class="material-icons-two-tone" style="font-size: 24px;">home</span>
+                    <span class="material-icons-two-tone" style="font-size: 24px;">favorite</span>
+                    <span class="material-icons-two-tone" style="font-size: 24px;">settings</span>
+                </div>
+            </div>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin-top: 24px; margin-bottom: 12px; color: #1e293b;">4. Material Icons Round</h3>
+            <p style="margin-bottom: 12px; color: #64748b;">클래스: <code class="code">material-icons-round</code></p>
+            <div style="margin-bottom: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <p style="margin-bottom: 8px;"><strong>사용 예시:</strong></p>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;span class="material-icons-round"&gt;home&lt;/span&gt;
+&lt;span class="material-icons-round"&gt;favorite&lt;/span&gt;
+&lt;span class="material-icons-round"&gt;settings&lt;/span&gt;</code></pre>
+                <p style="margin-top: 12px; margin-bottom: 8px;"><strong>실제 표시:</strong></p>
+                <div style="display: flex; gap: 16px; align-items: center; font-size: 24px;">
+                    <span class="material-icons-round" style="font-size: 24px;">home</span>
+                    <span class="material-icons-round" style="font-size: 24px;">favorite</span>
+                    <span class="material-icons-round" style="font-size: 24px;">settings</span>
+                </div>
+            </div>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin-top: 24px; margin-bottom: 12px; color: #1e293b;">5. Material Icons Sharp</h3>
+            <p style="margin-bottom: 12px; color: #64748b;">클래스: <code class="code">material-icons-sharp</code></p>
+            <div style="margin-bottom: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <p style="margin-bottom: 8px;"><strong>사용 예시:</strong></p>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;span class="material-icons-sharp"&gt;home&lt;/span&gt;
+&lt;span class="material-icons-sharp"&gt;favorite&lt;/span&gt;
+&lt;span class="material-icons-sharp"&gt;settings&lt;/span&gt;</code></pre>
+                <p style="margin-top: 12px; margin-bottom: 8px;"><strong>실제 표시:</strong></p>
+                <div style="display: flex; gap: 16px; align-items: center; font-size: 24px;">
+                    <span class="material-icons-sharp" style="font-size: 24px;">home</span>
+                    <span class="material-icons-sharp" style="font-size: 24px;">favorite</span>
+                    <span class="material-icons-sharp" style="font-size: 24px;">settings</span>
+                </div>
+            </div>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin-top: 24px; margin-bottom: 12px; color: #1e293b;">6. Material Symbols Outlined (새로운 버전)</h3>
+            <p style="margin-bottom: 12px; color: #64748b;">클래스: <code class="code">material-symbols-outlined</code></p>
+            <div style="margin-bottom: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <p style="margin-bottom: 8px;"><strong>사용 예시:</strong></p>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;span class="material-symbols-outlined"&gt;home&lt;/span&gt;
+&lt;span class="material-symbols-outlined"&gt;favorite&lt;/span&gt;
+&lt;span class="material-symbols-outlined"&gt;settings&lt;/span&gt;</code></pre>
+                <p style="margin-top: 12px; margin-bottom: 8px;"><strong>실제 표시:</strong></p>
+                <div style="display: flex; gap: 16px; align-items: center; font-size: 24px;">
+                    <span class="material-symbols-outlined" style="font-size: 24px;">home</span>
+                    <span class="material-symbols-outlined" style="font-size: 24px;">favorite</span>
+                    <span class="material-symbols-outlined" style="font-size: 24px;">settings</span>
+                </div>
+            </div>
+            
+            <div style="margin-top: 24px; padding: 16px; background: #eff6ff; border-radius: 6px; border: 1px solid #bfdbfe;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e40af;">사용 방법</h3>
+                <p style="margin-bottom: 12px; color: #1e40af;">SCSS 파일에서 <code class="code">@use '../../shared-scss/fonts' as *;</code> 또는 <code class="code">@use '../../shared-scss' as *;</code>를 사용하면 자동으로 Material Icons가 포함됩니다.</p>
+                <p style="margin-bottom: 0; color: #1e40af;">아이콘 이름은 <a href="https://fonts.google.com/icons" target="_blank" style="color: #2563eb; text-decoration: underline;">Google Material Icons</a>에서 확인할 수 있습니다.</p>
+            </div>
         </div>
     """
     
@@ -1630,11 +1731,11 @@ def main():
     with open(DOCS_DIR / "spacing.html", 'w', encoding='utf-8') as f:
         f.write(generate_html_page("Spacing", spacing_content, "spacing.html"))
     
-    # Fonts 페이지 (Google Icons)
+    # Fonts 페이지
     print("  - fonts.html 생성 중...")
     fonts_content = generate_fonts_page()
     with open(DOCS_DIR / "fonts.html", 'w', encoding='utf-8') as f:
-        f.write(generate_html_page("Google Icons", fonts_content, "fonts.html"))
+        f.write(generate_html_page("Fonts", fonts_content, "fonts.html"))
     
     # Colors 페이지 (기존 코드 활용 필요)
     print("  - colors.html 생성 중...")

@@ -2,16 +2,30 @@
 
 .d {
     &-flex {
-        display:flex;
+        display: flex;
     }
+
     &-none {
-        display:none;
+        display: none;
     }
+
     &-block {
-        display:block;
+        display: block;
     }
+
     &-inline-block {
-        display:inline-block;
+        display: inline-block;
     }
 }
 
+// none
+// inline
+// inline-block
+// block
+// grid
+// inline-grid
+// table
+// table-cell
+// table-row
+// flex
+// inline-flex
