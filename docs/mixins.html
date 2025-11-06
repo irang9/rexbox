@@ -22,84 +22,92 @@
             font-family: "Spoqa Han Sans Neo", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
             background: #f5f5f5;
             line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
         }
-        .nav {
+        .sidebar {
+            width: 240px;
             background: white;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 16px 0;
-            position: sticky;
+            border-right: 1px solid #e2e8f0;
+            position: fixed;
+            left: 0;
             top: 0;
+            height: 100vh;
+            overflow-y: auto;
             z-index: 100;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 2px 0 4px rgba(0,0,0,0.05);
         }
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid #e2e8f0;
         }
-        .nav-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 32px;
-        }
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
-        .nav-title {
+        .sidebar-title {
             font-size: 20px;
             font-weight: 700;
             color: #1e293b;
             text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
         }
-        .nav-menu {
-            display: flex;
-            gap: 24px;
-            list-style: none;
-        }
-        .nav-menu a {
-            color: #64748b;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            color: #2563eb;
-        }
-        .nav-right {
-            display: flex;
-            align-items: center;
-        }
-        .github-btn {
+        .sidebar-github {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 8px 16px;
+            padding: 6px 12px;
             background: #1e293b;
             color: white;
             text-decoration: none;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 500;
-            transition: background 0.2s, transform 0.2s;
+            transition: background 0.2s;
         }
-        .github-btn:hover {
+        .sidebar-github:hover {
             background: #334155;
-            transform: translateY(-1px);
         }
-        .github-btn svg {
-            width: 16px;
-            height: 16px;
+        .sidebar-github svg {
+            width: 14px;
+            height: 14px;
             fill: currentColor;
         }
+        .sidebar-nav {
+            padding: 16px 0;
+        }
+        .sidebar-nav ul {
+            list-style: none;
+        }
+        .sidebar-nav li {
+            margin: 0;
+        }
+        .sidebar-nav a {
+            display: block;
+            padding: 10px 20px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        .sidebar-nav a:hover {
+            background: #f8fafc;
+            color: #2563eb;
+        }
+        .sidebar-nav a.active {
+            background: #eff6ff;
+            color: #2563eb;
+            border-left-color: #2563eb;
+            font-weight: 600;
+        }
+        .main-content {
+            flex: 1;
+            margin-left: 240px;
+            min-height: 100vh;
+        }
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 32px 20px;
+            padding: 32px 40px;
         }
         h1 {
             color: #212121;
@@ -291,41 +299,40 @@
 </head>
 <body>
     
-    <nav class="nav">
-        <div class="nav-container">
-            <div class="nav-content">
-                <div class="nav-left">
-                    <a href="index.html" class="nav-title">Shared SCSS</a>
-                    <ul class="nav-menu">
-                            <li><a href="index.html">홈</a></li>
-                        <li><a href="colors.html">Colors</a></li>
-                        <li><a href="typography.html">Typography</a></li>
-                        <li><a href="fonts.html">Fonts</a></li>
-                        <li><a href="breakpoints.html">Breakpoints</a></li>
-                        <li><a href="spacing.html">Spacing</a></li>
-                        <li><a href="mixins.html" class="active">Mixins</a></li>
-
-                    </ul>
-                </div>
-                <div class="nav-right">
-                    <a href="https://github.com/irang9/shared-scss" target="_blank" rel="noopener noreferrer" class="github-btn">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
-                        </svg>
-                        GitHub
-                    </a>
-                </div>
-            </div>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-title">Shared SCSS</a>
+            <a href="https://github.com/irang9/shared-scss" target="_blank" rel="noopener noreferrer" class="sidebar-github">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                </svg>
+                GitHub
+            </a>
         </div>
-    </nav>
+        <nav class="sidebar-nav">
+            <ul>
+                    <li><a href="index.html">홈</a></li>
+                <li><a href="colors.html">Colors</a></li>
+                <li><a href="typography.html">Typography</a></li>
+                <li><a href="fonts.html">Fonts</a></li>
+                <li><a href="breakpoints.html">Breakpoints</a></li>
+                <li><a href="spacing.html">Spacing</a></li>
+                <li><a href="borders.html">Borders</a></li>
+                <li><a href="mixins.html" class="active">Mixins</a></li>
+
+            </ul>
+        </nav>
+    </aside>
     
-    <div class="container">
-        
+    <main class="main-content">
+        <div class="container">
+            
         <h1>Mixins</h1>
         <p class="subtitle">사용 가능한 SCSS mixins</p>
     
         <div class="section">
-            <h2 class="section-title">Border Radius Mixins</h2>
+            <h2 class="section-title">Rounded Mixins (권장)</h2>
+            <p style="margin-bottom: 16px; color: #64748b; font-size: 14px;">Bootstrap 스타일과 일관성을 위해 <code class="code">rounded</code> mixin을 권장합니다. 기존 <code class="code">border-radius</code> mixin은 하위 호환성을 위해 유지됩니다.</p>
             <table>
                 <thead>
                     <tr>
@@ -336,57 +343,60 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><code class="code">@include border-radius</code></td>
+                        <td><code class="code">@include rounded</code></td>
                         <td>Generic border-radius (4개 코너 각각 지정 가능)</td>
-                        <td><code class="code">@include border-radius(8px);</code><br><code class="code">@include border-radius(8px, 4px, 8px, 4px);</code></td>
+                        <td><code class="code">@include rounded(8px);</code><br><code class="code">@include rounded(8px, 4px, 8px, 4px);</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-none</code></td>
+                        <td><code class="code">@include rounded-none</code></td>
                         <td>border-radius: 0</td>
-                        <td><code class="code">@include border-radius-none;</code></td>
+                        <td><code class="code">@include rounded-none;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-xs</code></td>
+                        <td><code class="code">@include rounded-xs</code></td>
                         <td>border-radius: 2px</td>
-                        <td><code class="code">@include border-radius-xs;</code></td>
+                        <td><code class="code">@include rounded-xs;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-sm</code></td>
+                        <td><code class="code">@include rounded-sm</code></td>
                         <td>border-radius: 4px</td>
-                        <td><code class="code">@include border-radius-sm;</code></td>
+                        <td><code class="code">@include rounded-sm;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-md</code></td>
+                        <td><code class="code">@include rounded-md</code></td>
                         <td>border-radius: 6px</td>
-                        <td><code class="code">@include border-radius-md;</code></td>
+                        <td><code class="code">@include rounded-md;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-lg</code></td>
+                        <td><code class="code">@include rounded-lg</code></td>
                         <td>border-radius: 8px</td>
-                        <td><code class="code">@include border-radius-lg;</code></td>
+                        <td><code class="code">@include rounded-lg;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-xl</code></td>
+                        <td><code class="code">@include rounded-xl</code></td>
                         <td>border-radius: 12px</td>
-                        <td><code class="code">@include border-radius-xl;</code></td>
+                        <td><code class="code">@include rounded-xl;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-2xl</code></td>
+                        <td><code class="code">@include rounded-2xl</code></td>
                         <td>border-radius: 16px</td>
-                        <td><code class="code">@include border-radius-2xl;</code></td>
+                        <td><code class="code">@include rounded-2xl;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-3xl</code></td>
+                        <td><code class="code">@include rounded-3xl</code></td>
                         <td>border-radius: 24px</td>
-                        <td><code class="code">@include border-radius-3xl;</code></td>
+                        <td><code class="code">@include rounded-3xl;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-full</code></td>
+                        <td><code class="code">@include rounded-full</code></td>
                         <td>border-radius: 999px</td>
-                        <td><code class="code">@include border-radius-full;</code></td>
+                        <td><code class="code">@include rounded-full;</code></td>
                     </tr>
                 </tbody>
             </table>
+            <div style="margin-top: 16px; padding: 12px; background: #fef3c7; border-radius: 6px; border: 1px solid #fbbf24;">
+                <p style="margin: 0; color: #92400e; font-size: 13px;"><strong>참고:</strong> 기존 <code class="code">@include border-radius()</code> mixin은 하위 호환성을 위해 계속 사용할 수 있지만, 새로운 코드에서는 <code class="code">@include rounded()</code> 사용을 권장합니다.</p>
+            </div>
         </div>
         
         <div class="section">
@@ -579,6 +589,7 @@
             </table>
         </div>
         
-    </div>
+        </div>
+    </main>
 </body>
 </html>

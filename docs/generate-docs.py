@@ -26,6 +26,7 @@ NAV_ITEMS = [
     {"title": "Fonts", "url": "fonts.html"},
     {"title": "Breakpoints", "url": "breakpoints.html"},
     {"title": "Spacing", "url": "spacing.html"},
+    {"title": "Borders", "url": "borders.html"},
     {"title": "Mixins", "url": "mixins.html"},
 ]
 
@@ -48,84 +49,92 @@ def get_common_styles() -> str:
             font-family: "Spoqa Han Sans Neo", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
             background: #f5f5f5;
             line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
         }
-        .nav {
+        .sidebar {
+            width: 240px;
             background: white;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 16px 0;
-            position: sticky;
+            border-right: 1px solid #e2e8f0;
+            position: fixed;
+            left: 0;
             top: 0;
+            height: 100vh;
+            overflow-y: auto;
             z-index: 100;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 2px 0 4px rgba(0,0,0,0.05);
         }
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid #e2e8f0;
         }
-        .nav-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 32px;
-        }
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
-        .nav-title {
+        .sidebar-title {
             font-size: 20px;
             font-weight: 700;
             color: #1e293b;
             text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
         }
-        .nav-menu {
-            display: flex;
-            gap: 24px;
-            list-style: none;
-        }
-        .nav-menu a {
-            color: #64748b;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            color: #2563eb;
-        }
-        .nav-right {
-            display: flex;
-            align-items: center;
-        }
-        .github-btn {
+        .sidebar-github {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 8px 16px;
+            padding: 6px 12px;
             background: #1e293b;
             color: white;
             text-decoration: none;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 500;
-            transition: background 0.2s, transform 0.2s;
+            transition: background 0.2s;
         }
-        .github-btn:hover {
+        .sidebar-github:hover {
             background: #334155;
-            transform: translateY(-1px);
         }
-        .github-btn svg {
-            width: 16px;
-            height: 16px;
+        .sidebar-github svg {
+            width: 14px;
+            height: 14px;
             fill: currentColor;
         }
+        .sidebar-nav {
+            padding: 16px 0;
+        }
+        .sidebar-nav ul {
+            list-style: none;
+        }
+        .sidebar-nav li {
+            margin: 0;
+        }
+        .sidebar-nav a {
+            display: block;
+            padding: 10px 20px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        .sidebar-nav a:hover {
+            background: #f8fafc;
+            color: #2563eb;
+        }
+        .sidebar-nav a.active {
+            background: #eff6ff;
+            color: #2563eb;
+            border-left-color: #2563eb;
+            font-weight: 600;
+        }
+        .main-content {
+            flex: 1;
+            margin-left: 240px;
+            min-height: 100vh;
+        }
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 32px 20px;
+            padding: 32px 40px;
         }
         h1 {
             color: #212121;
@@ -317,33 +326,29 @@ def get_common_styles() -> str:
 
 
 def get_navigation(current_page: str = "") -> str:
-    """네비게이션 HTML 생성"""
+    """네비게이션 HTML 생성 (왼쪽 사이드바)"""
     nav_html = """
-    <nav class="nav">
-        <div class="nav-container">
-            <div class="nav-content">
-                <div class="nav-left">
-                    <a href="index.html" class="nav-title">Shared SCSS</a>
-                    <ul class="nav-menu">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-title">Shared SCSS</a>
+            <a href="https://github.com/irang9/shared-scss" target="_blank" rel="noopener noreferrer" class="sidebar-github">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                </svg>
+                GitHub
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
     """
     for item in NAV_ITEMS:
         active = ' class="active"' if item["url"] == current_page else ""
-        nav_html += f'                        <li><a href="{item["url"]}"{active}>{item["title"]}</a></li>\n'
+        nav_html += f'                <li><a href="{item["url"]}"{active}>{item["title"]}</a></li>\n'
     
     nav_html += """
-                    </ul>
-                </div>
-                <div class="nav-right">
-                    <a href="https://github.com/irang9/shared-scss" target="_blank" rel="noopener noreferrer" class="github-btn">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
-                        </svg>
-                        GitHub
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+            </ul>
+        </nav>
+    </aside>
     """
     return nav_html
 
@@ -365,9 +370,11 @@ def generate_html_page(title: str, content: str, current_page: str = "") -> str:
 </head>
 <body>
     {get_navigation(current_page)}
-    <div class="container">
-        {content}
-    </div>
+    <main class="main-content">
+        <div class="container">
+            {content}
+        </div>
+    </main>
 </body>
 </html>
 """
@@ -1375,6 +1382,224 @@ def generate_fonts_page() -> str:
 
 
 # ============================================
+# Borders 페이지
+# ============================================
+
+BORDERS_FILE = ROOT_DIR / "utilities" / "_borders.scss"
+
+def extract_borders() -> Dict[str, List[str]]:
+    """Borders 파일에서 border utility 클래스를 추출합니다."""
+    borders = {
+        "additive": [],
+        "width": [],
+        "color": [],
+        "radius": [],
+        "opacity": []
+    }
+    
+    if not BORDERS_FILE.exists():
+        return borders
+    
+    with open(BORDERS_FILE, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # Border Additive/Subtractive
+    pattern = r'\.(border(?:-[a-z0-9-]+)?)\s*{'
+    matches = re.finditer(pattern, content)
+    for match in matches:
+        class_name = match.group(1)
+        if class_name in ['border', 'border-0', 'border-top', 'border-top-0', 
+                          'border-end', 'border-end-0', 'border-bottom', 'border-bottom-0',
+                          'border-start', 'border-start-0']:
+            borders["additive"].append(class_name)
+    
+    # Border Width
+    pattern = r'\.(border-[0-5])\s*{'
+    matches = re.finditer(pattern, content)
+    for match in matches:
+        borders["width"].append(match.group(1))
+    
+    # Border Color
+    pattern = r'\.(border-(?:primary|secondary|success|warning|error|danger|info|light|dark|white|black|positive|negative|neutral))\s*{'
+    matches = re.finditer(pattern, content)
+    for match in matches:
+        borders["color"].append(match.group(1))
+    
+    # Border Radius
+    pattern = r'\.(rounded(?:-[a-z0-9-]+)?)\s*{'
+    matches = re.finditer(pattern, content)
+    for match in matches:
+        borders["radius"].append(match.group(1))
+    
+    # Border Opacity
+    pattern = r'\.(border-opacity-(?:10|25|50|75|100))\s*{'
+    matches = re.finditer(pattern, content)
+    for match in matches:
+        borders["opacity"].append(match.group(1))
+    
+    return borders
+
+
+def generate_borders_page() -> str:
+    """Borders 페이지 생성"""
+    borders = extract_borders()
+    
+    content = """
+        <h1>Borders</h1>
+        <p class="subtitle">Bootstrap 스타일의 border 유틸리티 클래스</p>
+        
+        <div class="section">
+            <h2 class="section-title">Border Additive/Subtractive</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">테두리를 추가하거나 제거하는 유틸리티 클래스입니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                        <th>사용 예시</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code class="code">.border</code></td><td>모든 테두리 추가</td><td><code class="code">&lt;div class="border"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-0</code></td><td>모든 테두리 제거</td><td><code class="code">&lt;div class="border-0"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-top</code></td><td>상단 테두리 추가</td><td><code class="code">&lt;div class="border-top"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-top-0</code></td><td>상단 테두리 제거</td><td><code class="code">&lt;div class="border-top-0"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-end</code></td><td>우측 테두리 추가</td><td><code class="code">&lt;div class="border-end"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-end-0</code></td><td>우측 테두리 제거</td><td><code class="code">&lt;div class="border-end-0"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-bottom</code></td><td>하단 테두리 추가</td><td><code class="code">&lt;div class="border-bottom"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-bottom-0</code></td><td>하단 테두리 제거</td><td><code class="code">&lt;div class="border-bottom-0"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-start</code></td><td>좌측 테두리 추가</td><td><code class="code">&lt;div class="border-start"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-start-0</code></td><td>좌측 테두리 제거</td><td><code class="code">&lt;div class="border-start-0"&gt;</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Border Width</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">테두리 두께를 조절하는 유틸리티 클래스입니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                        <th>값</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code class="code">.border-0</code></td><td>border-width: 0</td><td>0</td></tr>
+                    <tr><td><code class="code">.border-1</code></td><td>border-width: 1px</td><td>1px</td></tr>
+                    <tr><td><code class="code">.border-2</code></td><td>border-width: 2px</td><td>2px</td></tr>
+                    <tr><td><code class="code">.border-3</code></td><td>border-width: 3px</td><td>3px</td></tr>
+                    <tr><td><code class="code">.border-4</code></td><td>border-width: 4px</td><td>4px</td></tr>
+                    <tr><td><code class="code">.border-5</code></td><td>border-width: 5px</td><td>5px</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Border Color</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">테두리 색상을 설정하는 유틸리티 클래스입니다. theme 색상을 사용합니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                        <th>사용 예시</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code class="code">.border-primary</code></td><td>Primary 색상</td><td><code class="code">&lt;div class="border border-primary"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-secondary</code></td><td>Secondary 색상</td><td><code class="code">&lt;div class="border border-secondary"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-success</code></td><td>Success 색상</td><td><code class="code">&lt;div class="border border-success"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-warning</code></td><td>Warning 색상</td><td><code class="code">&lt;div class="border border-warning"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-error</code></td><td>Error 색상</td><td><code class="code">&lt;div class="border border-error"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-danger</code></td><td>Danger 색상 (error와 동일)</td><td><code class="code">&lt;div class="border border-danger"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-info</code></td><td>Info 색상</td><td><code class="code">&lt;div class="border border-info"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-light</code></td><td>Light 색상</td><td><code class="code">&lt;div class="border border-light"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-dark</code></td><td>Dark 색상</td><td><code class="code">&lt;div class="border border-dark"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-white</code></td><td>White 색상</td><td><code class="code">&lt;div class="border border-white"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-black</code></td><td>Black 색상</td><td><code class="code">&lt;div class="border border-black"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-positive</code></td><td>Positive 색상 (주식 상승)</td><td><code class="code">&lt;div class="border border-positive"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-negative</code></td><td>Negative 색상 (주식 하락)</td><td><code class="code">&lt;div class="border border-negative"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-neutral</code></td><td>Neutral 색상</td><td><code class="code">&lt;div class="border border-neutral"&gt;</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Border Radius</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">테두리 모서리를 둥글게 만드는 유틸리티 클래스입니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                        <th>값</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code class="code">.rounded</code></td><td>border-radius: 4px</td><td>4px</td></tr>
+                    <tr><td><code class="code">.rounded-0</code></td><td>border-radius: 0</td><td>0</td></tr>
+                    <tr><td><code class="code">.rounded-1</code></td><td>border-radius: 2px</td><td>2px</td></tr>
+                    <tr><td><code class="code">.rounded-2</code></td><td>border-radius: 4px</td><td>4px</td></tr>
+                    <tr><td><code class="code">.rounded-3</code></td><td>border-radius: 6px</td><td>6px</td></tr>
+                    <tr><td><code class="code">.rounded-4</code></td><td>border-radius: 8px</td><td>8px</td></tr>
+                    <tr><td><code class="code">.rounded-5</code></td><td>border-radius: 12px</td><td>12px</td></tr>
+                    <tr><td><code class="code">.rounded-circle</code></td><td>border-radius: 50%</td><td>50%</td></tr>
+                    <tr><td><code class="code">.rounded-pill</code></td><td>border-radius: 999px</td><td>999px</td></tr>
+                    <tr><td><code class="code">.rounded-top</code></td><td>상단 모서리만 둥글게</td><td>4px (상단)</td></tr>
+                    <tr><td><code class="code">.rounded-end</code></td><td>우측 모서리만 둥글게</td><td>4px (우측)</td></tr>
+                    <tr><td><code class="code">.rounded-bottom</code></td><td>하단 모서리만 둥글게</td><td>4px (하단)</td></tr>
+                    <tr><td><code class="code">.rounded-start</code></td><td>좌측 모서리만 둥글게</td><td>4px (좌측)</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Border Opacity</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">테두리 투명도를 조절하는 유틸리티 클래스입니다. CSS 변수를 사용합니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                        <th>값</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code class="code">.border-opacity-10</code></td><td>--border-opacity: 0.1</td><td>10%</td></tr>
+                    <tr><td><code class="code">.border-opacity-25</code></td><td>--border-opacity: 0.25</td><td>25%</td></tr>
+                    <tr><td><code class="code">.border-opacity-50</code></td><td>--border-opacity: 0.5</td><td>50%</td></tr>
+                    <tr><td><code class="code">.border-opacity-75</code></td><td>--border-opacity: 0.75</td><td>75%</td></tr>
+                    <tr><td><code class="code">.border-opacity-100</code></td><td>--border-opacity: 1</td><td>100%</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">사용 방법</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">SCSS 파일에서 <code class="code">@use '../../shared-scss/utilities' as *;</code> 또는 <code class="code">@use '../../shared-scss' as *;</code>를 사용하면 자동으로 border 유틸리티 클래스가 포함됩니다.</p>
+            <div style="margin-top: 16px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">사용 예시</h3>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;!-- 기본 테두리 --&gt;
+&lt;div class="border"&gt;내용&lt;/div&gt;
+
+&lt;!-- Primary 색상 테두리 --&gt;
+&lt;div class="border border-primary"&gt;내용&lt;/div&gt;
+
+&lt;!-- 둥근 모서리 --&gt;
+&lt;div class="border rounded"&gt;내용&lt;/div&gt;
+
+&lt;!-- 조합 사용 --&gt;
+&lt;div class="border border-primary rounded-lg"&gt;내용&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+    """
+    
+    return content
+
+
+# ============================================
 # Mixins 페이지
 # ============================================
 
@@ -1384,7 +1609,7 @@ def extract_mixins() -> Dict[str, Dict[str, str]]:
     mixins_dir = ROOT_DIR / "mixins"
     
     mixin_files = {
-        "border-radius": mixins_dir / "_border-radius.scss",
+        "rounded": mixins_dir / "_rounded.scss",
         "backdrop": mixins_dir / "_backdrop.scss",
         "button-hover": mixins_dir / "_button-hover.scss",
         "clearfix": mixins_dir / "_clearfix.scss",
@@ -1423,11 +1648,12 @@ def generate_mixins_page() -> str:
         <p class="subtitle">사용 가능한 SCSS mixins</p>
     """
     
-    # Border Radius Mixins
-    if "border-radius" in mixins:
+    # Rounded Mixins (권장)
+    if "rounded" in mixins:
         content += """
         <div class="section">
-            <h2 class="section-title">Border Radius Mixins</h2>
+            <h2 class="section-title">Rounded Mixins (권장)</h2>
+            <p style="margin-bottom: 16px; color: #64748b; font-size: 14px;">Bootstrap 스타일과 일관성을 위해 <code class="code">rounded</code> mixin을 권장합니다. 기존 <code class="code">border-radius</code> mixin은 하위 호환성을 위해 유지됩니다.</p>
             <table>
                 <thead>
                     <tr>
@@ -1438,57 +1664,60 @@ def generate_mixins_page() -> str:
                 </thead>
                 <tbody>
                     <tr>
-                        <td><code class="code">@include border-radius</code></td>
+                        <td><code class="code">@include rounded</code></td>
                         <td>Generic border-radius (4개 코너 각각 지정 가능)</td>
-                        <td><code class="code">@include border-radius(8px);</code><br><code class="code">@include border-radius(8px, 4px, 8px, 4px);</code></td>
+                        <td><code class="code">@include rounded(8px);</code><br><code class="code">@include rounded(8px, 4px, 8px, 4px);</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-none</code></td>
+                        <td><code class="code">@include rounded-none</code></td>
                         <td>border-radius: 0</td>
-                        <td><code class="code">@include border-radius-none;</code></td>
+                        <td><code class="code">@include rounded-none;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-xs</code></td>
+                        <td><code class="code">@include rounded-xs</code></td>
                         <td>border-radius: 2px</td>
-                        <td><code class="code">@include border-radius-xs;</code></td>
+                        <td><code class="code">@include rounded-xs;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-sm</code></td>
+                        <td><code class="code">@include rounded-sm</code></td>
                         <td>border-radius: 4px</td>
-                        <td><code class="code">@include border-radius-sm;</code></td>
+                        <td><code class="code">@include rounded-sm;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-md</code></td>
+                        <td><code class="code">@include rounded-md</code></td>
                         <td>border-radius: 6px</td>
-                        <td><code class="code">@include border-radius-md;</code></td>
+                        <td><code class="code">@include rounded-md;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-lg</code></td>
+                        <td><code class="code">@include rounded-lg</code></td>
                         <td>border-radius: 8px</td>
-                        <td><code class="code">@include border-radius-lg;</code></td>
+                        <td><code class="code">@include rounded-lg;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-xl</code></td>
+                        <td><code class="code">@include rounded-xl</code></td>
                         <td>border-radius: 12px</td>
-                        <td><code class="code">@include border-radius-xl;</code></td>
+                        <td><code class="code">@include rounded-xl;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-2xl</code></td>
+                        <td><code class="code">@include rounded-2xl</code></td>
                         <td>border-radius: 16px</td>
-                        <td><code class="code">@include border-radius-2xl;</code></td>
+                        <td><code class="code">@include rounded-2xl;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-3xl</code></td>
+                        <td><code class="code">@include rounded-3xl</code></td>
                         <td>border-radius: 24px</td>
-                        <td><code class="code">@include border-radius-3xl;</code></td>
+                        <td><code class="code">@include rounded-3xl;</code></td>
                     </tr>
                     <tr>
-                        <td><code class="code">@include border-radius-full</code></td>
+                        <td><code class="code">@include rounded-full</code></td>
                         <td>border-radius: 999px</td>
-                        <td><code class="code">@include border-radius-full;</code></td>
+                        <td><code class="code">@include rounded-full;</code></td>
                     </tr>
                 </tbody>
             </table>
+            <div style="margin-top: 16px; padding: 12px; background: #fef3c7; border-radius: 6px; border: 1px solid #fbbf24;">
+                <p style="margin: 0; color: #92400e; font-size: 13px;"><strong>참고:</strong> 기존 <code class="code">@include border-radius()</code> mixin은 하위 호환성을 위해 계속 사용할 수 있지만, 새로운 코드에서는 <code class="code">@include rounded()</code> 사용을 권장합니다.</p>
+            </div>
         </div>
         """
     
@@ -1777,6 +2006,12 @@ def main():
     spacing_content = generate_spacing_page()
     with open(DOCS_DIR / "spacing.html", 'w', encoding='utf-8') as f:
         f.write(generate_html_page("Spacing", spacing_content, "spacing.html"))
+    
+    # Borders 페이지
+    print("  - borders.html 생성 중...")
+    borders_content = generate_borders_page()
+    with open(DOCS_DIR / "borders.html", 'w', encoding='utf-8') as f:
+        f.write(generate_html_page("Borders", borders_content, "borders.html"))
     
     # Fonts 페이지
     print("  - fonts.html 생성 중...")

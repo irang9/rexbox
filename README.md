@@ -19,7 +19,7 @@ shared-scss/
 ├── mixins/            # Mixin 파일들
 │   ├── _backdrop.scss
 │   ├── _bootstrap.scss
-│   ├── _border-radius.scss
+│   ├── _rounded.scss
 │   ├── _button-hover.scss
 │   ├── _clearfix.scss
 │   ├── _ellipsis.scss
@@ -37,6 +37,7 @@ shared-scss/
 ├── base/              # 기본 스타일
 │   └── _reset.scss    # CSS Reset 스타일
 ├── utilities/         # 유틸리티 클래스
+│   ├── _borders.scss  # Border 유틸리티 클래스 (Bootstrap 스타일)
 │   ├── _colors.scss   # 색상 유틸리티 클래스
 │   ├── _display.scss  # Display 유틸리티 클래스
 │   ├── _flex.scss     # Flexbox 유틸리티 클래스
@@ -206,7 +207,9 @@ shared-scss/
 
 모든 mixin 파일은 독립적으로 동작하며, 필요한 경우에만 다른 모듈을 참조합니다.
 
-- `_border-radius.scss`: border-radius 관련 mixins (값이 mixin 내부에 하드코딩됨)
+- `_rounded.scss`: border-radius 관련 mixins (Bootstrap 스타일과 일관성을 위해 `rounded` mixin 권장)
+  - **권장**: `@include rounded(4px)`, `@include rounded-sm` 등
+  - **Deprecated**: `@include border-radius(4px)` (하위 호환성 유지)
 - `_backdrop.scss`: backdrop-filter 관련 mixins
 - `_bootstrap.scss`: Bootstrap 관련 mixins (현재 비어있음)
 - `_button-hover.scss`: 버튼 호버 효과 mixin
@@ -278,6 +281,12 @@ shared-scss/
 
 유틸리티 클래스는 프로젝트에서 바로 사용할 수 있는 CSS 클래스들을 제공합니다.
 
+- `_borders.scss`: Border 유틸리티 클래스 (Bootstrap 스타일)
+  - Border 추가/제거: `.border`, `.border-top`, `.border-0` 등
+  - Border width: `.border-1`, `.border-2` 등
+  - Border color: `.border-primary`, `.border-success` 등 (theme 색상 사용)
+  - Border radius: `.rounded`, `.rounded-sm`, `.rounded-circle` 등
+  - Border opacity: `.border-opacity-50` 등
 - `_colors.scss`: 색상 유틸리티 클래스 (`.red`, `.positive`, `.negative`, `.neutral` 등)
 - `_display.scss`: Display 유틸리티 클래스 (`.d-flex`, `.d-none`, `.d-block` 등)
 - `_flex.scss`: Flexbox 유틸리티 클래스 (`.flex-row`, `.justify-center`, `.items-center` 등)

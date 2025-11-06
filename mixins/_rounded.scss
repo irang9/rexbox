@@ -1,0 +1,113 @@
+@charset "utf-8";
+
+// ============================================
+// Border Radius Mixins
+// ============================================
+// Bootstrap 스타일과 일관성을 위해 `rounded` mixin을 권장합니다.
+// 기존 `border-radius` mixin은 하위 호환성을 위해 유지됩니다.
+
+// Base border-radius mixin (내부 사용)
+@mixin border-radius-base($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+    -o-border-radius: $radius;
+}
+
+// ============================================
+// Rounded Mixins (권장)
+// ============================================
+// Generic rounded mixin (4개 코너 각각 지정 가능)
+// 사용법: @include rounded(4px); 또는 @include rounded(8px, 4px, 8px, 4px);
+@mixin rounded($top-left: 10px, $top-right: null, $bottom-right: null, $bottom-left: null) {
+    -webkit-border-radius: $top-left $top-right $bottom-right $bottom-left;
+    -moz-border-radius: $top-left $top-right $bottom-right $bottom-left;
+    -ms-border-radius: $top-left $top-right $bottom-right $bottom-left;
+    border-radius: $top-left $top-right $bottom-right $bottom-left;
+    -o-border-radius: $top-left $top-right $bottom-right $bottom-left;
+}
+
+// Predefined rounded mixins
+@mixin rounded-none {
+    @include border-radius-base(0);
+}
+
+@mixin rounded-xs {
+    @include border-radius-base(2px);
+}
+
+@mixin rounded-sm {
+    @include border-radius-base(4px);
+}
+
+@mixin rounded-md {
+    @include border-radius-base(6px);
+}
+
+@mixin rounded-lg {
+    @include border-radius-base(8px);
+}
+
+@mixin rounded-xl {
+    @include border-radius-base(12px);
+}
+
+@mixin rounded-2xl {
+    @include border-radius-base(16px);
+}
+
+@mixin rounded-3xl {
+    @include border-radius-base(24px);
+}
+
+@mixin rounded-full {
+    @include border-radius-base(999px);
+}
+
+// ============================================
+// Border Radius Mixins (Deprecated - 하위 호환성)
+// ============================================
+// ⚠️ Deprecated: `rounded` mixin 사용을 권장합니다.
+// @include border-radius(4px) → @include rounded(4px)
+@mixin border-radius($top-left: 10px, $top-right: null, $bottom-right: null, $bottom-left: null) {
+    @include rounded($top-left, $top-right, $bottom-right, $bottom-left);
+}
+
+// ⚠️ Deprecated: `rounded-*` mixin 사용을 권장합니다.
+@mixin border-radius-none {
+    @include rounded-none;
+}
+
+@mixin border-radius-xs {
+    @include rounded-xs;
+}
+
+@mixin border-radius-sm {
+    @include rounded-sm;
+}
+
+@mixin border-radius-md {
+    @include rounded-md;
+}
+
+@mixin border-radius-lg {
+    @include rounded-lg;
+}
+
+@mixin border-radius-xl {
+    @include rounded-xl;
+}
+
+@mixin border-radius-2xl {
+    @include rounded-2xl;
+}
+
+@mixin border-radius-3xl {
+    @include rounded-3xl;
+}
+
+@mixin border-radius-full {
+    @include rounded-full;
+}
+

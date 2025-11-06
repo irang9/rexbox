@@ -1,0 +1,220 @@
+@charset "utf-8";
+
+@use '../variables/colors' as *;
+@use '../theme' as *;
+
+// ============================================
+// Border Utilities
+// ============================================
+// Bootstrap 스타일의 border 유틸리티를 shared-scss 변수와 통합
+// 참고: https://getbootstrap.com/docs/5.3/utilities/borders/
+
+// Border width 변수
+$border-width: 1px;
+$border-widths: (
+    0: 0,
+    1: 1px,
+    2: 2px,
+    3: 3px,
+    4: 4px,
+    5: 5px
+);
+
+// Border style
+$border-style: solid;
+$border-color: $border-default; // theme에서 정의된 기본 border 색상
+
+// ============================================
+// Border Additive/Subtractive
+// ============================================
+.border {
+    border: $border-width $border-style $border-color !important;
+}
+
+.border-0 {
+    border: 0 !important;
+}
+
+.border-top {
+    border-top: $border-width $border-style $border-color !important;
+}
+
+.border-top-0 {
+    border-top: 0 !important;
+}
+
+.border-end {
+    border-right: $border-width $border-style $border-color !important;
+}
+
+.border-end-0 {
+    border-right: 0 !important;
+}
+
+.border-bottom {
+    border-bottom: $border-width $border-style $border-color !important;
+}
+
+.border-bottom-0 {
+    border-bottom: 0 !important;
+}
+
+.border-start {
+    border-left: $border-width $border-style $border-color !important;
+}
+
+.border-start-0 {
+    border-left: 0 !important;
+}
+
+// ============================================
+// Border Width
+// ============================================
+@each $name, $width in $border-widths {
+    .border-#{$name} {
+        border-width: $width !important;
+    }
+}
+
+// ============================================
+// Border Color (Theme Colors)
+// ============================================
+.border-primary {
+    border-color: $primary !important;
+}
+
+.border-secondary {
+    border-color: $secondary !important;
+}
+
+.border-success {
+    border-color: $success !important;
+}
+
+.border-warning {
+    border-color: $warning !important;
+}
+
+.border-error,
+.border-danger {
+    border-color: $error !important;
+}
+
+.border-info {
+    border-color: $info !important;
+}
+
+.border-light {
+    border-color: $border-light !important;
+}
+
+.border-dark {
+    border-color: $border-dark !important;
+}
+
+.border-white {
+    border-color: $white-real !important;
+}
+
+.border-black {
+    border-color: $black !important;
+}
+
+// Stock/Finance specific
+.border-positive {
+    border-color: $positive !important;
+}
+
+.border-negative {
+    border-color: $negative !important;
+}
+
+.border-neutral {
+    border-color: $neutral !important;
+}
+
+// ============================================
+// Border Radius
+// ============================================
+// Bootstrap 스타일의 rounded 유틸리티
+.rounded {
+    border-radius: 4px !important;
+}
+
+.rounded-0 {
+    border-radius: 0 !important;
+}
+
+.rounded-1 {
+    border-radius: 2px !important;
+}
+
+.rounded-2 {
+    border-radius: 4px !important;
+}
+
+.rounded-3 {
+    border-radius: 6px !important;
+}
+
+.rounded-4 {
+    border-radius: 8px !important;
+}
+
+.rounded-5 {
+    border-radius: 12px !important;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+.rounded-pill {
+    border-radius: 999px !important;
+}
+
+// Directional border radius
+.rounded-top {
+    border-top-left-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+}
+
+.rounded-end {
+    border-top-right-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+}
+
+.rounded-bottom {
+    border-bottom-right-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
+}
+
+.rounded-start {
+    border-bottom-left-radius: 4px !important;
+    border-top-left-radius: 4px !important;
+}
+
+// ============================================
+// Border Opacity (Optional)
+// ============================================
+// Bootstrap v5.2+ 스타일
+// CSS 변수를 사용하여 opacity 제어
+.border-opacity-10 {
+    --border-opacity: 0.1;
+}
+
+.border-opacity-25 {
+    --border-opacity: 0.25;
+}
+
+.border-opacity-50 {
+    --border-opacity: 0.5;
+}
+
+.border-opacity-75 {
+    --border-opacity: 0.75;
+}
+
+.border-opacity-100 {
+    --border-opacity: 1;
+}
