@@ -9,8 +9,9 @@ from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 
 # 프로젝트 루트 디렉토리
-ROOT_DIR = Path(__file__).parent.parent
-DOCS_DIR = ROOT_DIR / "docs"
+# docs 디렉토리에서 shared-scss 디렉토리로의 경로
+ROOT_DIR = Path(__file__).parent.parent / "shared-scss"
+DOCS_DIR = Path(__file__).parent
 VARIABLES_COLORS_FILE = ROOT_DIR / "variables" / "_colors.scss"
 THEME_FILE = ROOT_DIR / "theme" / "_index.scss"
 BREAKPOINTS_FILE = ROOT_DIR / "breakpoints" / "_index.scss"

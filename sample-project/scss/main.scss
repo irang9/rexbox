@@ -1,0 +1,77 @@
+@charset "utf-8";
+
+// ============================================
+// Sample Project - Main Stylesheet
+// ============================================
+// 이 파일은 프로젝트의 메인 스타일 파일입니다.
+// 컴파일하여 CSS로 변환한 후 HTML에서 사용합니다.
+
+// ============================================
+// 1. 프로젝트 설정 (변수 오버라이드)
+// ============================================
+// config에서 변수를 정의한 후, theme을 import하면
+// config의 변수가 theme의 기본값을 덮어씁니다.
+@use 'config' as config;
+
+// ============================================
+// 2. Theme import (config의 변수로 오버라이드)
+// ============================================
+// config에서 정의한 변수들을 theme에 전달하여 오버라이드합니다.
+@use '../../shared-scss/theme' as * with (
+    $primary: config.$primary,
+    $primary-light: config.$primary-light,
+    $primary-dark: config.$primary-dark,
+    $primary-100: config.$primary-100,
+    $primary-200: config.$primary-200,
+    $primary-300: config.$primary-300,
+    $primary-400: config.$primary-400,
+    $primary-500: config.$primary-500,
+    $primary-600: config.$primary-600,
+    $primary-700: config.$primary-700,
+    $primary-800: config.$primary-800,
+    $primary-900: config.$primary-900,
+    $secondary: config.$secondary,
+    $point: config.$point
+);
+
+// ============================================
+// 3. Shared SCSS (mixins, fonts, base, utilities)
+// ============================================
+@use '../../shared-scss/mixins' as *;
+@use '../../shared-scss/fonts' as *;
+@use '../../shared-scss/base/reset' as *;
+@use '../../shared-scss/utilities' as *;
+
+// ============================================
+// 3. 프로젝트 컴포넌트 스타일
+// ============================================
+@use 'components/header' as *;
+@use 'components/hero' as *;
+@use 'components/cards' as *;
+@use 'components/footer' as *;
+
+// ============================================
+// 4. 프로젝트 전역 스타일
+// ============================================
+body {
+    font-family: $font-basic;
+    color: $text-primary;
+    background-color: $bg-default;
+    line-height: 1.6;
+}
+
+// 예제: 프로젝트 전용 유틸리티 클래스
+.brand-gradient {
+    background: linear-gradient(135deg, config.$brand-gradient-start 0%, config.$brand-gradient-end 100%);
+}
+
+.section {
+    padding: config.$section-padding 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+

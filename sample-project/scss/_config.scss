@@ -1,0 +1,64 @@
+@charset "utf-8";
+
+// ============================================
+// 프로젝트별 설정 (Shared SCSS 오버라이드)
+// ============================================
+// 이 파일에서 shared-scss의 기본값을 오버라이드하거나
+// 프로젝트 전용 변수를 추가할 수 있습니다.
+
+// ============================================
+// 1. Shared SCSS 기본값 import
+// ============================================
+@use '../../shared-scss/variables' as *;
+@use '../../shared-scss/breakpoints' as *;
+
+// ============================================
+// 2. Theme 색상 오버라이드 (변수 재정의)
+// ============================================
+// 주의: theme을 import하기 전에 변수를 정의합니다.
+// !default가 있는 변수는 여기서 정의한 값이 우선됩니다.
+
+// Primary 색상을 프로젝트 브랜드 색상으로 변경
+$primary: #ff6b6b;
+$primary-light: #ff8787;
+$primary-dark: #ee5a6f;
+
+// Primary 색상 계열
+$primary-100: #ffe0e0;
+$primary-200: #ffc7c7;
+$primary-300: #ffaeae;
+$primary-400: #ff9595;
+$primary-500: #ff7c7c;
+$primary-600: #ff6b6b;
+$primary-700: #ee5a6f;
+$primary-800: #dd4a73;
+$primary-900: #cc3a77;
+
+// Secondary 색상 변경
+$secondary: #4ecdc4;
+
+// Point 색상 변경
+$point: #ffd93d;
+
+// ============================================
+// 3. Theme import는 하지 않음
+// ============================================
+// theme은 main.scss에서 with로 오버라이드하여 import합니다.
+// 컴포넌트 파일에서는 직접 theme을 import하여 사용합니다.
+
+// ============================================
+// 3. 프로젝트 전용 변수
+// ============================================
+// shared-scss에 없는 프로젝트 전용 색상
+$brand-accent: #ffd93d;
+$brand-gradient-start: #ff6b6b;
+$brand-gradient-end: #4ecdc4;
+
+// 프로젝트 전용 spacing
+$section-padding: 60px;
+$card-gap: 24px;
+$header-height: 80px;
+
+// 프로젝트 전용 breakpoint (필요시)
+// $custom-breakpoint: 1600px;
+

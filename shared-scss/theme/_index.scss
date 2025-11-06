@@ -48,23 +48,24 @@ $border-dark: $slate-500; // 어두운 테두리
 // ============================================
 // 주의: primary, secondary 등은 프로젝트별로 다를 수 있으므로
 // 필요시 각 프로젝트에서 오버라이드하거나 별도로 정의하세요
-$primary: $blue-600;
-$primary-light: $blue-400;
-$primary-dark: $blue-800;
+// !default를 사용하여 프로젝트에서 오버라이드 가능하도록 함
+$primary: $blue-600 !default;
+$primary-light: $blue-400 !default;
+$primary-dark: $blue-800 !default;
 
 // Primary 색상 계열 (더 세분화된 계층)
-$primary-100: $blue-100;
-$primary-200: $blue-200;
-$primary-300: $blue-300;
-$primary-400: $blue-400;
-$primary-500: $blue-500;
-$primary-600: $blue-600;
-$primary-700: $blue-700;
-$primary-800: $blue-800;
-$primary-900: $blue-900;
+$primary-100: $blue-100 !default;
+$primary-200: $blue-200 !default;
+$primary-300: $blue-300 !default;
+$primary-400: $blue-400 !default;
+$primary-500: $blue-500 !default;
+$primary-600: $blue-600 !default;
+$primary-700: $blue-700 !default;
+$primary-800: $blue-800 !default;
+$primary-900: $blue-900 !default;
 
-$secondary: $cyan-500; // 기본값: #29c0ff (프로젝트별 오버라이드 가능)
-$point: $green-500; // 포인트/강조 색상 (기본값: #00b25f)
+$secondary: $cyan-500 !default; // 기본값: #29c0ff (프로젝트별 오버라이드 가능)
+$point: $green-500 !default; // 포인트/강조 색상 (기본값: #00b25f)
 
 // ============================================
 // State Colors
