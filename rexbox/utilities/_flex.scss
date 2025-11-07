@@ -1,34 +1,71 @@
 @charset "utf-8";
 
 .flex {
-    &-row { flex-direction: row; }
-    &-column { flex-direction: column; }
-    &-1 { flex: 1; } 
+    &-row {
+        flex-direction: row;
+    }
+
+    &-column {
+        flex-direction: column;
+    }
+
+    &-1 {
+        flex: 1;
+    }
 }
 
-.justify-start { justify-content: flex-start; }
-.justify-center { justify-content: center; }
-.justify-end { justify-content: flex-end; }
+.justify {
+    &-start {
+        justify-content: flex-start;
+    }
+
+    &-center {
+        justify-content: center;
+    }
+
+    &-end {
+        justify-content: flex-end;
+    }
+}
 
 .justify-content {
     &-between {
         justify-content: space-between;
     }
+
     &-around {
         justify-content: space-around;
     }
+
     &-evenly {
         justify-content: space-evenly;
     }
 }
 
-.items-start { align-items: flex-start; }
-.items-center { align-items: center; }
-.items-end { align-items: flex-end; }
+.items {
+    &-start {
+        align-items: flex-start;
+    }
 
-.align-content {
-    &-start { align-content: flex-start; }
-    &-center { align-content: center; }
-    &-end { align-content: flex-end; }
+    &-center {
+        align-items: center;
+    }
+
+    &-end {
+        align-items: flex-end;
+    }
 }
 
+.align-content {
+    &-start {
+        align-content: flex-start;
+    }
+
+    &-center {
+        align-content: center;
+    }
+
+    &-end {
+        align-content: flex-end;
+    }
+}

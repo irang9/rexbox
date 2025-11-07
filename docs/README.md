@@ -16,6 +16,7 @@ RexBox 라이브러리의 모든 변수, mixins, 유틸리티 클래스를 확�
 - **fonts.html** - 폰트 변수 및 Material Icons
 - **breakpoints.html** - Breakpoint 변수 및 mixins
 - **spacing.html** - Spacing 변수
+- **container.html** - Container / Row 레이아웃
 - **borders.html** - Border 유틸리티 클래스
 - **stacks.html** - Stacks 유틸리티 클래스
 - **vertical-rule.html** - Vertical Rule 유틸리티 클래스
@@ -132,11 +133,13 @@ docs/
 - SCSS 파일을 수정한 후에는 문서를 재생성하세요
 - Python 3.6 이상이 필요합니다
 
-## 📘 Responsive Utilities 문서
+## 📘 Layout & Responsive 문서
 
-- <code class="code">mobile-*</code> / <code class="code">desktop-*</code> 접두사로 표시, position, flex 방향, stack 등을 전환할 수 있는 유틸리티를 소개합니다.
-- 예시: <code class="code">mobile-only</code>, <code class="code">desktop-flex-row</code>, <code class="code">mobile-vstack</code>
-- 상세 가이드는 `responsive.html` 페이지에서 확인하세요.
+- `container.html`에서 기본 컨테이너, row, gutter 조정 방법을 확인할 수 있습니다.
+- `responsive.html`에서는 <code class="code">mobile-*</code> / <code class="code">desktop-*</code> 접두사 유틸리티를 소개합니다.
+
+- 예시: <code class="code">.container</code>, <code class="code">.row</code>, <code class="code">mobile-only</code>, <code class="code">desktop-flex-row</code>, <code class="code">mobile-vstack</code>
+- 상세 가이드는 각 문서 페이지에서 확인하세요.
 
 ## 📖 더 알아보기
 

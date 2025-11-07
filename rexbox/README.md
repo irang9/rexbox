@@ -117,6 +117,7 @@ $secondary: #4ecdc4;
 - **Colors**: 색상 유틸리티
 - **Display**: Display 유틸리티
 - **Flex**: Flexbox 유틸리티
+- **Container**: `.container`, `.container-fluid`, `.row` 등 경량 레이아웃 구조
 - **Spacing**: Margin, padding, gap
 - **Stacks**: `.vstack`, `.hstack` (Bootstrap 스타일)
 - **Vertical Rule**: `.vr` (수직 구분선)
@@ -173,6 +174,17 @@ $secondary: #4ecdc4;
         <span>Item 1</span>
         <div class="vr"></div>
         <span>Item 2</span>
+    </div>
+</div>
+```
+
+### Container / Row 사용
+```html
+<div class="container">
+    <header class="py-4 border-bottom">Header</header>
+    <div class="row" style="--rexbox-row-gap: 32px;">
+        <aside class="flex-1 p-3 bg-slate-100 rounded">Sidebar</aside>
+        <main class="flex-2 p-3 bg-white rounded shadow-sm">Main Content</main>
     </div>
 </div>
 ```

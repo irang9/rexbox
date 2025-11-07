@@ -41,3 +41,29 @@ body {
     font-family: "GmarketSans", sans-serif;
     font-weight: 500; // Medium
 }
+
+// Basic Color Utilities
+.red {
+    color: $red-500;
+}
+
+.blue_font {
+    color: #05a3e5;
+}
+
+// State Color Utilities
+.positive,
+.stock-up,
+.gapup {
+    color: $positive !important;
+}
+
+.negative,
+.stock-down,
+.gapdown {
+    color: $negative !important;
+}
+
+.neutral {
+    color: $neutral !important;
+}

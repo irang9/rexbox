@@ -11,12 +11,10 @@
 @use 'sass:map';
 
 $rexbox-responsive-ranges: (
-    'mobile': (
-        'type': 'down',
+    'mobile': ('type': 'down',
         'key': 'md'
     ),
-    'desktop': (
-        'type': 'up',
+    'desktop': ('type': 'up',
         'key': 'md'
     )
 );
@@ -25,11 +23,13 @@ $rexbox-responsive-ranges: (
     $type: map.get($range-config, 'type');
     $key: map.get($range-config, 'key');
 
-    @if $type == 'down' {
+    @if $type =='down' {
         @include down($key) {
             @content;
         }
-    } @else if $type == 'up' {
+    }
+
+    @else if $type =='up' {
         @include up($key) {
             @content;
         }
@@ -114,18 +114,14 @@ $rexbox-flex-directions: (
 // ============================================
 
 $rexbox-stack-map: (
-    'hstack': (
-        'display': flex,
+    'hstack': ('display': flex,
         'flex-direction': row,
         'align-items': center,
-        'align-self': stretch
-    ),
-    'vstack': (
-        'display': flex,
+        'align-self': stretch),
+    'vstack': ('display': flex,
         'flex': 1 1 auto,
         'flex-direction': column,
-        'align-self': stretch
-    )
+        'align-self': stretch)
 );
 
 @each $prefix, $config in $rexbox-responsive-ranges {
@@ -139,5 +135,3 @@ $rexbox-stack-map: (
         }
     }
 }
-
-

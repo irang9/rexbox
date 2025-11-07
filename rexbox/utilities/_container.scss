@@ -1,0 +1,68 @@
+@charset "utf-8";
+
+// ============================================
+// Container Utilities
+// ============================================
+// - .container       : 반응형 최대 너비 + 양 옆 gutter
+// - .container-fluid : 항상 100% 폭, 동일한 gutter
+// - .row             : gap 기반의 유연한 행 컨테이너
+// - .row > *         : flex 아이템 기본 설정
+// CSS 변수로 gutter 값을 런타임에 조정할 수 있습니다.
+
+@use 'sass:map';
+@use '../breakpoints' as *;
+
+// Breakpoint별 컨테이너 최대 너비 (Bootstrap v5 참고)
+$container-max-widths: (
+    "sm": 540px,
+    "md": 720px,
+    "lg": 960px,
+    "xl": 1140px,
+    "xxl": 1320px
+) !default;
+
+// 기본 가로 gutter (좌우 padding, row gap)
+$container-gutter-x: 24px !default;
+
+// 가로 gutter CSS 변수
+:root {
+    --rexbox-container-gutter-x: #{$container-gutter-x};
+    --rexbox-row-gap: #{$container-gutter-x};
+}
+
+.container,
+.container-fluid {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: calc(var(--rexbox-container-gutter-x) / 2);
+    padding-left: calc(var(--rexbox-container-gutter-x) / 2);
+}
+
+.container {
+    max-width: 100%;
+
+    @each $breakpoint, $max-width in $container-max-widths {
+        @include up($breakpoint) {
+            max-width: $max-width;
+        }
+    }
+}
+
+.container-fluid {
+    max-width: none;
+}
+
+// 기본 행 컨테이너
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--rexbox-row-gap);
+}
+
+.row > * {
+    flex: 0 0 auto;
+    min-width: 0;
+}
+
+

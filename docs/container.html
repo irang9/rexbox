@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vertical Rule - RexBox</title>
+    <title>Container - RexBox</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="%231e293b"/%3E%3Ctext x="50" y="70" font-family="monospace" font-size="60" text-anchor="middle" fill="white"%3ES%3C/text%3E%3C/svg%3E">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     
@@ -317,11 +317,11 @@
                 <li><a href="fonts.html">Fonts</a></li>
                 <li><a href="breakpoints.html">Breakpoints</a></li>
                 <li><a href="spacing.html">Spacing</a></li>
-                <li><a href="container.html">Container</a></li>
+                <li><a href="container.html" class="active">Container</a></li>
                 <li><a href="borders.html">Borders</a></li>
                 <li><a href="stacks.html">Stacks</a></li>
                 <li><a href="responsive.html">Responsive</a></li>
-                <li><a href="vertical-rule.html" class="active">Vertical Rule</a></li>
+                <li><a href="vertical-rule.html">Vertical Rule</a></li>
                 <li><a href="mixins.html">Mixins</a></li>
 
             </ul>
@@ -331,74 +331,98 @@
     <main class="main-content">
         <div class="container">
             
-        <h1>Vertical Rule</h1>
-        <p class="subtitle">Bootstrap 스타일의 vertical rule 유틸리티 클래스</p>
-        <p style="margin-bottom: 24px; color: #64748b;">수직 구분선을 만드는 헬퍼 클래스입니다. <code class="code">&lt;hr&gt;</code> 요소와 유사한 스타일의 수직 구분선을 제공합니다. <a href="https://getbootstrap.com/docs/5.3/helpers/vertical-rule/" target="_blank" style="color: #2563eb; text-decoration: underline;">Bootstrap Vertical Rule</a>을 참고했습니다.</p>
-        
+        <h1>Container</h1>
+        <p class="subtitle">반응형 최대 너비와 기본 gutter를 제공하는 레이아웃 컨테이너</p>
+        <p style="margin-bottom: 24px; color: #64748b;">Bootstrap의 컨테이너 패턴을 참고하여 구성했습니다. <code class="code">.container</code>는 breakpoint별 <code class="code">max-width</code>를 적용하고, <code class="code">.container-fluid</code>는 항상 100% 너비를 사용합니다. 기본 padding과 row gap은 <code class="code">--rexbox-container-gutter-x</code> / <code class="code">--rexbox-row-gap</code> 변수로 제어할 수 있습니다.</p>
+
         <div class="section">
-            <h2 class="section-title">Vertical Rule</h2>
-            <p style="margin-bottom: 16px; color: #64748b;">수직 구분선을 만들려면 <code class="code">.vr</code> 클래스를 사용하세요.</p>
+            <h2 class="section-title">클래스 요약</h2>
             <table>
                 <thead>
                     <tr>
                         <th>클래스</th>
                         <th>설명</th>
-                        <th>CSS 속성</th>
+                        <th>CSS</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><code class="code">.vr</code></td>
-                        <td>수직 구분선</td>
-                        <td><code class="code">display: inline-block; align-self: stretch; width: 1px; min-height: 1em; background-color: currentColor; opacity: 0.25;</code></td>
+                        <td><code class="code">.container</code></td>
+                        <td>반응형 최대 너비 + 좌우 gutter</td>
+                        <td><code class="code">max-width</code> (breakpoint별), <code class="code">padding-inline: gutter / 2</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="code">.container-fluid</code></td>
+                        <td>항상 100% 너비, 동일한 gutter</td>
+                        <td><code class="code">max-width: none</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="code">.row</code></td>
+                        <td>gap 기반의 플렉스 행 컨테이너</td>
+                        <td><code class="code">display: flex; flex-wrap: wrap; gap: var(--rexbox-row-gap);</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="code">.row &gt; *</code></td>
+                        <td>행 내부 아이템 기본 설정</td>
+                        <td><code class="code">flex: 0 0 auto; min-width: 0;</code></td>
                     </tr>
                 </tbody>
             </table>
-            <div style="margin-top: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
-                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">기본 사용 예시</h3>
-                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="vr"&gt;&lt;/div&gt;</code></pre>
-            </div>
         </div>
-        
+
         <div class="section">
-            <h2 class="section-title">Flex 레이아웃에서 사용</h2>
-            <p style="margin-bottom: 16px; color: #64748b;">Vertical rule은 flex 레이아웃에서 높이가 자동으로 조절됩니다.</p>
-            <div style="margin-top: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
-                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">사용 예시</h3>
-                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="d-flex" style="height: 200px;"&gt;
-  &lt;div class="vr"&gt;&lt;/div&gt;
+            <h2 class="section-title">Breakpoint별 최대 너비</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Breakpoint</th>
+                        <th>범위</th>
+                        <th><code class="code">max-width</code></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code class="code">sm</code></td><td>≥ 576px</td><td>540px</td></tr>
+                    <tr><td><code class="code">md</code></td><td>≥ 768px</td><td>720px</td></tr>
+                    <tr><td><code class="code">lg</code></td><td>≥ 992px</td><td>960px</td></tr>
+                    <tr><td><code class="code">xl</code></td><td>≥ 1200px</td><td>1140px</td></tr>
+                    <tr><td><code class="code">xxl</code></td><td>≥ 1400px</td><td>1320px</td></tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 16px; color: #64748b;">프로젝트에서 <code class="code">$container-max-widths</code> 변수를 오버라이드하면 값을 재정의할 수 있습니다.</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">사용 예시</h2>
+            <div style="display: grid; gap: 24px;">
+                <div style="padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">기본 컨테이너</h3>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="container"&gt;
+  &lt;h1 class="mb-4"&gt;페이지 제목&lt;/h1&gt;
+  &lt;p&gt;본문 콘텐츠...&lt;/p&gt;
 &lt;/div&gt;</code></pre>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">Stacks와 함께 사용</h2>
-            <p style="margin-bottom: 16px; color: #64748b;">Stacks와 함께 사용하여 수평 레이아웃에 구분선을 추가할 수 있습니다.</p>
-            <div style="margin-top: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
-                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">사용 예시</h3>
-                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="hstack gap-3"&gt;
-  &lt;div class="p-2"&gt;First item&lt;/div&gt;
-  &lt;div class="p-2 ms-auto"&gt;Second item&lt;/div&gt;
-  &lt;div class="vr"&gt;&lt;/div&gt;
-  &lt;div class="p-2"&gt;Third item&lt;/div&gt;
+                </div>
+
+                <div style="padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">Row와 Column</h3>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="flex-1 p-3 bg-slate-100 rounded"&gt;Column A&lt;/div&gt;
+    &lt;div class="flex-1 p-3 bg-slate-200 rounded"&gt;Column B&lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
+                    <p style="margin-top: 12px; color: #64748b;">간단한 컬럼 분할은 <code class="code">flex-1</code>, <code class="code">w-50</code> 등 기존 유틸리티와 조합하세요.</p>
+                </div>
+
+                <div style="padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">Gutter 조정</h3>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;section class="container" style="--rexbox-row-gap: 48px;"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="flex-1 bg-slate-100 p-3"&gt;Left&lt;/div&gt;
+    &lt;div class="flex-1 bg-slate-200 p-3"&gt;Right&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                </div>
             </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">특징</h2>
-            <ul style="margin: 0; padding-left: 24px; color: #334155;">
-                <li style="margin-bottom: 8px;">1px 너비</li>
-                <li style="margin-bottom: 8px;">min-height: 1em</li>
-                <li style="margin-bottom: 8px;">currentColor와 opacity: 0.25로 색상 설정</li>
-                <li style="margin-bottom: 8px;">flex 레이아웃에서 높이가 자동으로 조절됨</li>
-                <li style="margin-bottom: 8px;">추가 스타일로 커스터마이징 가능</li>
-            </ul>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">사용 방법</h2>
-            <p style="margin-bottom: 16px; color: #64748b;">SCSS 파일에서 <code class="code">@use '../../rexbox/utilities' as *;</code> 또는 <code class="code">@use '../../rexbox' as *;</code>를 사용하면 자동으로 vertical rule 유틸리티 클래스가 포함됩니다.</p>
         </div>
     
         </div>

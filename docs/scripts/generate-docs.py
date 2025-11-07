@@ -27,6 +27,7 @@ NAV_ITEMS = [
     {"title": "Fonts", "url": "fonts.html"},
     {"title": "Breakpoints", "url": "breakpoints.html"},
     {"title": "Spacing", "url": "spacing.html"},
+    {"title": "Container", "url": "container.html"},
     {"title": "Borders", "url": "borders.html"},
     {"title": "Stacks", "url": "stacks.html"},
     {"title": "Responsive", "url": "responsive.html"},
@@ -1607,6 +1608,113 @@ def generate_borders_page() -> str:
 
 
 # ============================================
+# Container 페이지
+# ============================================
+
+CONTAINER_FILE = ROOT_DIR / "utilities" / "_container.scss"
+
+def generate_container_page() -> str:
+    """Container 페이지 생성"""
+    content = f"""
+        <h1>Container</h1>
+        <p class="subtitle">반응형 최대 너비와 기본 gutter를 제공하는 레이아웃 컨테이너</p>
+        <p style="margin-bottom: 24px; color: #64748b;">Bootstrap의 컨테이너 패턴을 참고하여 구성했습니다. <code class="code">.container</code>는 breakpoint별 <code class="code">max-width</code>를 적용하고, <code class="code">.container-fluid</code>는 항상 100% 너비를 사용합니다. 기본 padding과 row gap은 <code class="code">--rexbox-container-gutter-x</code> / <code class="code">--rexbox-row-gap</code> 변수로 제어할 수 있습니다.</p>
+
+        <div class="section">
+            <h2 class="section-title">클래스 요약</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                        <th>CSS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code class="code">.container</code></td>
+                        <td>반응형 최대 너비 + 좌우 gutter</td>
+                        <td><code class="code">max-width</code> (breakpoint별), <code class="code">padding-inline: gutter / 2</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="code">.container-fluid</code></td>
+                        <td>항상 100% 너비, 동일한 gutter</td>
+                        <td><code class="code">max-width: none</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="code">.row</code></td>
+                        <td>gap 기반의 플렉스 행 컨테이너</td>
+                        <td><code class="code">display: flex; flex-wrap: wrap; gap: var(--rexbox-row-gap);</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="code">.row &gt; *</code></td>
+                        <td>행 내부 아이템 기본 설정</td>
+                        <td><code class="code">flex: 0 0 auto; min-width: 0;</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Breakpoint별 최대 너비</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Breakpoint</th>
+                        <th>범위</th>
+                        <th><code class="code">max-width</code></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code class="code">sm</code></td><td>≥ 576px</td><td>540px</td></tr>
+                    <tr><td><code class="code">md</code></td><td>≥ 768px</td><td>720px</td></tr>
+                    <tr><td><code class="code">lg</code></td><td>≥ 992px</td><td>960px</td></tr>
+                    <tr><td><code class="code">xl</code></td><td>≥ 1200px</td><td>1140px</td></tr>
+                    <tr><td><code class="code">xxl</code></td><td>≥ 1400px</td><td>1320px</td></tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 16px; color: #64748b;">프로젝트에서 <code class="code">$container-max-widths</code> 변수를 오버라이드하면 값을 재정의할 수 있습니다.</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">사용 예시</h2>
+            <div style="display: grid; gap: 24px;">
+                <div style="padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">기본 컨테이너</h3>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="container"&gt;
+  &lt;h1 class="mb-4"&gt;페이지 제목&lt;/h1&gt;
+  &lt;p&gt;본문 콘텐츠...&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+
+                <div style="padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">Row와 Column</h3>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="flex-1 p-3 bg-slate-100 rounded"&gt;Column A&lt;/div&gt;
+    &lt;div class="flex-1 p-3 bg-slate-200 rounded"&gt;Column B&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    <p style="margin-top: 12px; color: #64748b;">간단한 컬럼 분할은 <code class="code">flex-1</code>, <code class="code">w-50</code> 등 기존 유틸리티와 조합하세요.</p>
+                </div>
+
+                <div style="padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">Gutter 조정</h3>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;section class="container" style="--rexbox-row-gap: 48px;"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="flex-1 bg-slate-100 p-3"&gt;Left&lt;/div&gt;
+    &lt;div class="flex-1 bg-slate-200 p-3"&gt;Right&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    """
+
+    return content
+
+
+# ============================================
 # Responsive Utilities 페이지
 # ============================================
 
@@ -2378,6 +2486,12 @@ def main():
     spacing_content = generate_spacing_page()
     with open(DOCS_DIR / "spacing.html", 'w', encoding='utf-8') as f:
         f.write(generate_html_page("Spacing", spacing_content, "spacing.html"))
+    
+    # Container 페이지
+    print("  - container.html 생성 중...")
+    container_content = generate_container_page()
+    with open(DOCS_DIR / "container.html", 'w', encoding='utf-8') as f:
+        f.write(generate_html_page("Container", container_content, "container.html"))
     
     # Borders 페이지
     print("  - borders.html 생성 중...")
