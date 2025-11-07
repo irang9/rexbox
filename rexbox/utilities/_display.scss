@@ -1,31 +1,22 @@
 @charset "utf-8";
 
-.d {
-    &-flex {
-        display: flex;
-    }
+$rexbox-display-map: (
+    none: none,
+    inline: inline,
+    inline-block: inline-block,
+    block: block,
+    flex: flex,
+    inline-flex: inline-flex,
+    grid: grid,
+    inline-grid: inline-grid,
+    table: table,
+    table-row: table-row,
+    table-cell: table-cell,
+    contents: contents
+);
 
-    &-none {
-        display: none;
-    }
-
-    &-block {
-        display: block;
-    }
-
-    &-inline-block {
-        display: inline-block;
+@each $name, $value in $rexbox-display-map {
+    .d-#{$name} {
+        display: $value !important;
     }
 }
-
-// none
-// inline
-// inline-block
-// block
-// grid
-// inline-grid
-// table
-// table-cell
-// table-row
-// flex
-// inline-flex

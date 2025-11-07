@@ -1,10 +1,79 @@
 @charset "utf-8";
 
-.position {
-    &-static { position:relative; }
-    &-relative { position:relative; }
-    &-absolute { position:relative; }
-    &-fixed { position:relative; }
-    &-sticky { position:relative; }
+$rexbox-position-map: (
+    static: static,
+    relative: relative,
+    absolute: absolute,
+    fixed: fixed,
+    sticky: sticky
+);
+
+$rexbox-position-inset-map: (
+    top: top,
+    end: right,
+    bottom: bottom,
+    start: left
+);
+
+$rexbox-inset-values: (
+    0: 0,
+    50: 50%,
+    100: 100%
+);
+
+$rexbox-zindex-map: (
+    n1: -1,
+    0: 0,
+    1: 1,
+    10: 10,
+    100: 100,
+    auto: auto
+);
+
+@each $name, $value in $rexbox-position-map {
+    .position-#{$name} {
+        position: $value !important;
+    }
 }
 
+@each $direction, $property in $rexbox-position-inset-map {
+    @each $name, $value in $rexbox-inset-values {
+        .#{$direction}-#{$name} {
+            #{$property}: $value !important;
+        }
+    }
+}
+
+.top-auto {
+    top: auto !important;
+}
+
+.end-auto {
+    right: auto !important;
+}
+
+.bottom-auto {
+    bottom: auto !important;
+}
+
+.start-auto {
+    left: auto !important;
+}
+
+.translate-middle {
+    transform: translate(-50%, -50%) !important;
+}
+
+.translate-middle-x {
+    transform: translateX(-50%) !important;
+}
+
+.translate-middle-y {
+    transform: translateY(-50%) !important;
+}
+
+@each $name, $value in $rexbox-zindex-map {
+    .z-#{$name} {
+        z-index: $value !important;
+    }
+}
