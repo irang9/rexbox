@@ -120,4 +120,30 @@
     &-center {
         text-align: center !important;
     }
+
+    &-ellipsis {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &-wrap {
+        white-space: normal !important;
+    }
+
+    &-nowrap {
+        white-space: nowrap !important;
+    }
+
+    &-pre {
+        white-space: pre !important;
+    }
+
+    &-pre-line {
+        white-space: pre-line !important;
+    }
+
+    &-pre-wrap {
+        white-space: pre-wrap !important;
+    }
 }

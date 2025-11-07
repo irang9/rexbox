@@ -29,6 +29,7 @@ NAV_ITEMS = [
     {"title": "Spacing", "url": "spacing.html"},
     {"title": "Borders", "url": "borders.html"},
     {"title": "Stacks", "url": "stacks.html"},
+    {"title": "Responsive", "url": "responsive.html"},
     {"title": "Vertical Rule", "url": "vertical-rule.html"},
     {"title": "Mixins", "url": "mixins.html"},
 ]
@@ -1606,6 +1607,173 @@ def generate_borders_page() -> str:
 
 
 # ============================================
+# Responsive Utilities 페이지
+# ============================================
+
+RESPONSIVE_FILE = ROOT_DIR / "utilities" / "_responsive.scss"
+
+def generate_responsive_page() -> str:
+    """Responsive Utilities 페이지 생성"""
+    content = f"""
+        <h1>Responsive Utilities</h1>
+        <p class="subtitle">모바일(≤ 768px)과 데스크톱(≥ 768px) 뷰포트에서만 동작하는 유틸리티 클래스</p>
+        <p style="margin-bottom: 24px; color: #64748b;">RexBox의 breakpoint 믹스인을 기반으로 생성된 접두사 유틸리티입니다. <code class="code">mobile-</code> 접두사는 <code class="code">@include down(\"md\")</code>을, <code class="code">desktop-</code> 접두사는 <code class="code">@include up(\"md\")</code> 범위를 적용합니다.</p>
+
+        <div class="section">
+            <h2 class="section-title">Breakpoint 범위</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>접두사</th>
+                        <th>Breakpoint</th>
+                        <th>미디어쿼리</th>
+                        <th>설명</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code class="code">mobile-*</code></td>
+                        <td><code class="code">down(\"md\")</code></td>
+                        <td><code class="code">@media (max-width: 767.98px)</code></td>
+                        <td>폰 · 태블릿(세로)까지 포함하는 모바일 영역</td>
+                    </tr>
+                    <tr>
+                        <td><code class="code">desktop-*</code></td>
+                        <td><code class="code">up(\"md\")</code></td>
+                        <td><code class="code">@media (min-width: 768px)</code></td>
+                        <td>태블릿 가로 · 데스크톱 영역</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 16px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; color: #64748b;">
+                <strong>Tip:</strong> <code class="code">mobile-only</code> 요소의 기본 <code class="code">display</code> 값은 <code class="code">block</code>입니다. 다른 값이 필요하면 <code class="code">--rexbox-mobile-only-display</code> CSS 변수를 재정의하세요.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">표시/숨김</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>동작</th>
+                        <th>CSS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code class="code">.mobile-only</code></td>
+                        <td>모바일에서만 표시 (기본 display: block)</td>
+                        <td><code class="code">display: none → block (≤ 768px)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="code">.desktop-only</code></td>
+                        <td>데스크톱에서만 표시</td>
+                        <td><code class="code">display: none → block (≥ 768px)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="code">.mobile-hide</code></td>
+                        <td>모바일 구간에서 숨김</td>
+                        <td><code class="code">display: none (≤ 768px)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="code">.desktop-hide</code></td>
+                        <td>데스크톱 구간에서 숨김</td>
+                        <td><code class="code">display: none (≥ 768px)</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Position</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">뷰포트 범위에 따라 <code class="code">position</code> 값을 전환할 수 있습니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                        <th>CSS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code class="code">.mobile-position-absolute</code></td><td>모바일에서 absolute</td><td><code class="code">position: absolute !important;</code></td></tr>
+                    <tr><td><code class="code">.desktop-position-static</code></td><td>데스크톱에서 static</td><td><code class="code">position: static !important;</code></td></tr>
+                    <tr><td><code class="code">.desktop-position-sticky</code></td><td>데스크톱에서 sticky</td><td><code class="code">position: sticky !important;</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Flex Direction</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">Column ↔ Row 전환이 필요한 레이아웃에서 유용합니다. 클래스는 항상 <code class="code">display: flex</code>를 강제합니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                        <th>CSS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code class="code">.mobile-flex-column</code></td><td>모바일에서 column</td><td><code class="code">display: flex; flex-direction: column;</code></td></tr>
+                    <tr><td><code class="code">.desktop-flex-row</code></td><td>데스크톱에서 row</td><td><code class="code">display: flex; flex-direction: row;</code></td></tr>
+                    <tr><td><code class="code">.desktop-flex-row-reverse</code></td><td>데스크톱에서 row-reverse</td><td><code class="code">display: flex; flex-direction: row-reverse;</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Stacks 전환</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">기존 <code class="code">.hstack</code>, <code class="code">.vstack</code> 유틸리티를 모바일/데스크톱에 맞춰 전환합니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                        <th>CSS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code class="code">.mobile-vstack</code></td><td>모바일에서 수직 스택</td><td><code class="code">display: flex; flex-direction: column;</code></td></tr>
+                    <tr><td><code class="code">.desktop-hstack</code></td><td>데스크톱에서 수평 스택</td><td><code class="code">display: flex; flex-direction: row; align-items: center;</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">사용 예시</h2>
+            <div style="display: grid; gap: 24px;">
+                <div style="padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">영역 표시 전환</h3>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="mobile-only p-3 bg-primary text-white"&gt;
+  모바일에서만 보입니다.
+&lt;/div&gt;
+
+&lt;div class="desktop-only p-3 bg-slate-100"&gt;
+  데스크톱에서만 보입니다.
+&lt;/div&gt;</code></pre>
+                </div>
+
+                <div style="padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">레이아웃 전환</h3>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;section class="mobile-vstack desktop-hstack gap-4"&gt;
+  &lt;aside class="mobile-position-static desktop-position-sticky" style="top: 80px;"&gt;
+    사이드바
+  &lt;/aside&gt;
+  &lt;article class="flex-1"&gt;
+    본문 콘텐츠
+  &lt;/article&gt;
+&lt;/section&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    """
+
+    return content
+
+
+# ============================================
 # Stacks 페이지
 # ============================================
 
@@ -2222,6 +2390,12 @@ def main():
     stacks_content = generate_stacks_page()
     with open(DOCS_DIR / "stacks.html", 'w', encoding='utf-8') as f:
         f.write(generate_html_page("Stacks", stacks_content, "stacks.html"))
+    
+    # Responsive 페이지
+    print("  - responsive.html 생성 중...")
+    responsive_content = generate_responsive_page()
+    with open(DOCS_DIR / "responsive.html", 'w', encoding='utf-8') as f:
+        f.write(generate_html_page("Responsive", responsive_content, "responsive.html"))
     
     # Vertical Rule 페이지
     print("  - vertical-rule.html 생성 중...")

@@ -121,6 +121,7 @@ $secondary: #4ecdc4;
 - **Stacks**: `.vstack`, `.hstack` (Bootstrap 스타일)
 - **Vertical Rule**: `.vr` (수직 구분선)
 - **Text**: Typography 유틸리티
+- **Responsive**: `.mobile-only`, `.desktop-flex-row`, `.mobile-vstack` 등 반응형 접두사 유틸리티
 
 ## 📖 문서
 
@@ -174,6 +175,22 @@ $secondary: #4ecdc4;
         <span>Item 2</span>
     </div>
 </div>
+```
+
+### Responsive Utilities 사용
+```html
+<header class="mobile-only p-3 bg-primary text-white">
+    모바일에서만 보이는 배너
+</header>
+
+<section class="mobile-vstack desktop-hstack gap-4">
+    <aside class="mobile-position-static desktop-position-sticky" style="top: 80px;">
+        사이드바
+    </aside>
+    <article class="flex-1">
+        본문 콘텐츠
+    </article>
+</section>
 ```
 
 ## 🔧 커스터마이징

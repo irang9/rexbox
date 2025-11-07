@@ -1,0 +1,143 @@
+@charset "utf-8";
+
+// ============================================
+// Responsive Utilities (mobile / desktop)
+// ============================================
+// 모바일(≤ md, 768px) / 데스크톱(≥ md) 범위에서만 동작하는
+// show/hide, position, flex-direction, stack 유틸리티입니다.
+// RexBox breakpoints의 `down("md")`, `up("md")`를 기반으로 생성됩니다.
+
+@use '../breakpoints' as *;
+@use 'sass:map';
+
+$rexbox-responsive-ranges: (
+    'mobile': (
+        'type': 'down',
+        'key': 'md'
+    ),
+    'desktop': (
+        'type': 'up',
+        'key': 'md'
+    )
+);
+
+@mixin rexbox-responsive-range($range-config) {
+    $type: map.get($range-config, 'type');
+    $key: map.get($range-config, 'key');
+
+    @if $type == 'down' {
+        @include down($key) {
+            @content;
+        }
+    } @else if $type == 'up' {
+        @include up($key) {
+            @content;
+        }
+    }
+}
+
+// ============================================
+// 1. Visibility Helpers
+// ============================================
+// - {prefix}-only : 해당 구간에서만 표시 (기본 display: block)
+// - {prefix}-hide : 해당 구간에서 숨김
+
+$rexbox-only-default-display: (
+    'mobile': block,
+    'desktop': block
+);
+
+@each $prefix, $config in $rexbox-responsive-ranges {
+    .#{$prefix}-only {
+        display: none !important;
+
+        @include rexbox-responsive-range($config) {
+            $default-display: map.get($rexbox-only-default-display, $prefix);
+            display: var(--rexbox-#{$prefix}-only-display, $default-display) !important;
+        }
+    }
+
+    .#{$prefix}-hide {
+        @include rexbox-responsive-range($config) {
+            display: none !important;
+        }
+    }
+}
+
+// ============================================
+// 2. Position Utilities
+// ============================================
+
+$rexbox-position-values: (
+    'static',
+    'relative',
+    'absolute',
+    'fixed',
+    'sticky',
+    'unset'
+);
+
+@each $prefix, $config in $rexbox-responsive-ranges {
+    @each $value in $rexbox-position-values {
+        .#{$prefix}-position-#{$value} {
+            @include rexbox-responsive-range($config) {
+                position: #{$value} !important;
+            }
+        }
+    }
+}
+
+// ============================================
+// 3. Flex Direction Utilities
+// ============================================
+
+$rexbox-flex-directions: (
+    'row',
+    'row-reverse',
+    'column',
+    'column-reverse'
+);
+
+@each $prefix, $config in $rexbox-responsive-ranges {
+    @each $direction in $rexbox-flex-directions {
+        .#{$prefix}-flex-#{$direction} {
+            @include rexbox-responsive-range($config) {
+                display: flex !important;
+                flex-direction: #{$direction} !important;
+            }
+        }
+    }
+}
+
+// ============================================
+// 4. Stack Helpers (hstack / vstack)
+// ============================================
+
+$rexbox-stack-map: (
+    'hstack': (
+        'display': flex,
+        'flex-direction': row,
+        'align-items': center,
+        'align-self': stretch
+    ),
+    'vstack': (
+        'display': flex,
+        'flex': 1 1 auto,
+        'flex-direction': column,
+        'align-self': stretch
+    )
+);
+
+@each $prefix, $config in $rexbox-responsive-ranges {
+    @each $stack, $props in $rexbox-stack-map {
+        .#{$prefix}-#{$stack} {
+            @include rexbox-responsive-range($config) {
+                @each $property, $value in $props {
+                    #{$property}: #{$value} !important;
+                }
+            }
+        }
+    }
+}
+
+
