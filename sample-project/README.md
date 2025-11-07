@@ -160,6 +160,15 @@ $container-gutter-x: 32px; // 좌우 padding & row gap
 - `.w-fit`, `.w-max`, `.w-auto`를 사용하면 콘텐츠 크기에 맞는 버튼/블록을 쉽게 만들 수 있습니다.
 - 반응형 전환은 `mobile-*/desktop-*` 접두사 유틸리티(예: `mobile-flex-column`, `desktop-flex-row`, `mobile-only`)와 조합해 구현하세요. 필요하다면 컴포넌트 SCSS에서 `@include down("md") { width: 100%; }`처럼 세밀한 튜닝도 가능합니다.
 
+### 4-6. 색상 유틸리티 활용
+
+- `rexbox/utilities/_colors.scss`에서 `bg-`, `bg-*-subtle`, `text-`, `text-bg-*` 클래스를 제공합니다.
+- 예시:
+  - `.text-primary`, `.text-muted` – 텍스트 색상 지정
+  - `.bg-success`, `.bg-warning-subtle` – 배경 색상 및 옅은 배경
+  - `.text-bg-primary`, `.text-bg-danger` – 배경과 텍스트가 함께 적용되는 배지 스타일
+- 프로젝트별 브랜드 색상을 `_config.scss`에서 오버라이드하면 유틸리티 클래스도 자동으로 변경된 팔레트를 따릅니다.
+
 ## 5. 포함된 UI 요소
 
 - **Hero**: 브랜드 그라디언트 배경과 CTA 버튼

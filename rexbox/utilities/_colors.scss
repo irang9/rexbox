@@ -1,7 +1,150 @@
 @charset "utf-8";
+@use 'sass:map';
+@use 'sass:color';
 @use '../variables' as *;
 @use '../theme' as *;
 
 // ============================================
 // Color Utility Classes
 // ============================================
+// Bootstrap 스타일을 참고하여 자주 사용하는 텍스트/배경 유틸리티를 제공합니다.
+// theme/_index.scss에서 정의된 semantic 색상과 variables/_colors.scss의 기본 팔레트를 활용합니다.
+
+@function rexbox-contrast-color($background, $light: $white-real, $dark: $text-primary) {
+    @if color.lightness($background) < 55% {
+        @return $light;
+    }
+    @return $dark;
+}
+
+@function rexbox-subtle-color($base, $weight: 85%) {
+    @return color.mix($white-real, $base, $weight);
+}
+
+@function rexbox-emphasis-color($base) {
+    @return color.mix($base, $black, 30%);
+}
+
+$rexbox-semantic-colors: (
+    "primary": $primary,
+    "primary-light": $primary-light,
+    "primary-dark": $primary-dark,
+    "secondary": $secondary,
+    "point": $point,
+    "success": $success,
+    "warning": $warning,
+    "error": $error,
+    "danger": $error,
+    "info": $info,
+    "positive": $positive,
+    "negative": $negative,
+    "neutral": $neutral,
+);
+
+$rexbox-bg-neutrals: (
+    "light": $bg-light,
+    "subtle": $bg-subtle,
+    "default": $bg-default,
+    "dark": $bg-dark,
+    "white": $white-real,
+    "black": $black,
+    "transparent": transparent,
+);
+
+$rexbox-text-base: (
+    "primary": $text-primary,
+    "secondary": $text-secondary,
+    "tertiary": $text-tertiary,
+    "muted": color.mix($text-secondary, $text-primary, 40%),
+    "disabled": $text-disabled,
+    "inverse": $text-inverse,
+    "white": $white-real,
+    "black": $black,
+    "link": $link,
+    "link-hover": $link-hover,
+);
+
+$rexbox-text-colors: map.merge($rexbox-text-base, $rexbox-semantic-colors);
+$rexbox-bg-colors: map.merge($rexbox-bg-neutrals, $rexbox-semantic-colors);
+
+// --------------------------------------------
+// Text Colors
+// --------------------------------------------
+@each $name, $value in $rexbox-text-colors {
+    .text-#{$name} {
+        color: $value !important;
+    }
+}
+
+// alias
+.text-body {
+    color: $text-primary !important;
+}
+
+// --------------------------------------------
+// Background Colors
+// --------------------------------------------
+@each $name, $value in $rexbox-bg-colors {
+    .bg-#{$name} {
+        background-color: $value !important;
+        @if $name != "transparent" {
+            color: rexbox-contrast-color($value) !important;
+        }
+    }
+}
+
+@each $name, $value in $rexbox-semantic-colors {
+    $subtle: rexbox-subtle-color($value, 88%);
+    .bg-#{$name}-subtle {
+        background-color: $subtle !important;
+        color: rexbox-emphasis-color($value) !important;
+    }
+
+    .text-bg-#{$name} {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-weight: 500;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.375rem;
+        background-color: $value !important;
+        color: rexbox-contrast-color($value) !important;
+    }
+}
+
+// 중립 배경용 text-bg
+@each $name, $value in $rexbox-bg-neutrals {
+    @if $name != "transparent" {
+        .text-bg-#{$name} {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-weight: 500;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            background-color: $value !important;
+            color: rexbox-contrast-color($value) !important;
+        }
+    }
+}
+
+// --------------------------------------------
+// Helpers
+// --------------------------------------------
+.bg-gradient-primary {
+    background-image: linear-gradient(135deg, $primary, $primary-light) !important;
+    color: rexbox-contrast-color($primary) !important;
+}
+
+.bg-gradient-secondary {
+    background-image: linear-gradient(135deg, $secondary, $info) !important;
+    color: rexbox-contrast-color($secondary) !important;
+}
+
+.text-reset {
+    color: inherit !important;
+}
+
+.bg-reset {
+    background-color: transparent !important;
+}
