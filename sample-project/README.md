@@ -127,6 +127,39 @@ $card-gap: 24px;
 }
 ```
 
+### 4-4. Container & Gutter 조정
+
+`rexbox/utilities/_container.scss`에서 제공하는 `$container-max-widths`와 `$container-gutter-x` 값을 프로젝트별로 덮어쓸 수 있습니다. 예를 들어, 태블릿 구간을 조금 더 좁게 만들고 싶다면 아래와 같이 설정한 뒤 `_rexbox-base.scss`를 import하세요.
+
+```scss
+// _config.scss 혹은 전역 설정 파일에서
+$container-max-widths: (
+  "xxs": 320px,
+  "xs": 360px,
+  "sm": 520px,
+  "md": 680px,
+  "lg": 960px,
+  "xl": 1140px,
+  "xxl": 1320px
+);
+
+$container-gutter-x: 32px; // 좌우 padding & row gap
+```
+
+또는 HTML에서 CSS 변수를 재정의해 구간별로 값을 바꿀 수도 있습니다.
+
+```html
+<section class="container" style="--rexbox-row-gap: 48px;">
+  ...
+</section>
+```
+
+### 4-5. Width & Responsive Utilities 활용
+
+- `.w-25`, `.w-33`, `.w-50`, `.w-66`, `.w-75`, `.w-100` 등 백분율 기반 너비를 제공하여 빠르게 컬럼 레이아웃을 구성할 수 있습니다.
+- `.w-fit`, `.w-max`, `.w-auto`를 사용하면 콘텐츠 크기에 맞는 버튼/블록을 쉽게 만들 수 있습니다.
+- 반응형 전환은 `mobile-*/desktop-*` 접두사 유틸리티(예: `mobile-flex-column`, `desktop-flex-row`, `mobile-only`)와 조합해 구현하세요. 필요하다면 컴포넌트 SCSS에서 `@include down("md") { width: 100%; }`처럼 세밀한 튜닝도 가능합니다.
+
 ## 5. 포함된 UI 요소
 
 - **Hero**: 브랜드 그라디언트 배경과 CTA 버튼

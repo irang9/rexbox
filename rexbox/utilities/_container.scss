@@ -14,12 +14,13 @@
 
 // Breakpoint별 컨테이너 최대 너비 (Bootstrap v5 참고)
 $container-max-widths: (
+    "xxs": 320px,
+    "xs": 360px,
     "sm": 540px,
     "md": 720px,
     "lg": 960px,
     "xl": 1140px,
-    "xxl": 1320px
-) !default;
+    "xxl": 1320px) !default;
 
 // 기본 가로 gutter (좌우 padding, row gap)
 $container-gutter-x: 24px !default;
@@ -35,8 +36,9 @@ $container-gutter-x: 24px !default;
     width: 100%;
     margin-right: auto;
     margin-left: auto;
-    padding-right: calc(var(--rexbox-container-gutter-x) / 2);
-    padding-left: calc(var(--rexbox-container-gutter-x) / 2);
+    padding-right: calc(var(--rexbox-container-gutter-x) / 2
+    );
+padding-left: calc(var(--rexbox-container-gutter-x) / 2);
 }
 
 .container {
@@ -60,9 +62,7 @@ $container-gutter-x: 24px !default;
     gap: var(--rexbox-row-gap);
 }
 
-.row > * {
+.row>* {
     flex: 0 0 auto;
     min-width: 0;
 }
-
-

@@ -475,13 +475,17 @@
                 <div style="padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
                     <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">레이아웃 전환</h3>
                     <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;section class="mobile-vstack desktop-hstack gap-4"&gt;
-  &lt;aside class="mobile-position-static desktop-position-sticky" style="top: 80px;"&gt;
-    사이드바
-  &lt;/aside&gt;
-  &lt;article class="flex-1"&gt;
-    본문 콘텐츠
-  &lt;/article&gt;
-&lt;/section&gt;</code></pre>
+   &lt;div class="w-50 p-3 bg-slate-100"&gt;Desktop 50%&lt;/div&gt;
+   &lt;div class="w-50 p-3 bg-slate-200"&gt;Desktop 50%&lt;/div&gt;
+ &lt;/section&gt;
+ 
+ // SCSS에서 모바일 대응 추가
+ .mobile-vstack &gt; .w-50 {
+   @include down("md") {
+     width: 100%;
+   }
+ }</code></pre>
+                    <p style="margin-top: 12px; color: #64748b;">반응형으로 전환할 때는 Responsive 접두사 유틸리티나 breakpoint mixin을 함께 사용하세요.</p>
                 </div>
             </div>
         </div>

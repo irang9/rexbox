@@ -1270,15 +1270,18 @@ def generate_width_page() -> str:
 
                 <div style="padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
                     <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">Responsive 조합</h3>
-                    <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="row"&gt;
-  &lt;div class="mobile-w-100 desktop-w-50 p-3 bg-slate-100"&gt;
-    모바일 전체, 데스크톱 절반
-  &lt;/div&gt;
-  &lt;div class="mobile-w-100 desktop-w-50 p-3 bg-slate-200"&gt;
-    모바일 전체, 데스크톱 절반
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                    <p style="margin-top: 12px; color: #64748b;">반응형 width 유틸리티는 Responsive 접두사 페이지의 패턴을 참고하세요.</p>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;section class="mobile-vstack desktop-hstack gap-4"&gt;
+   &lt;div class="w-50 p-3 bg-slate-100"&gt;Desktop 50%&lt;/div&gt;
+   &lt;div class="w-50 p-3 bg-slate-200"&gt;Desktop 50%&lt;/div&gt;
+ &lt;/section&gt;
+ 
+ // SCSS에서 모바일 대응 추가
+ .mobile-vstack &gt; .w-50 {{
+   @include down("md") {{
+     width: 100%;
+   }}
+ }}</code></pre>
+                    <p style="margin-top: 12px; color: #64748b;">반응형으로 전환할 때는 Responsive 접두사 유틸리티나 breakpoint mixin을 함께 사용하세요.</p>
                 </div>
             </div>
         </div>
@@ -1743,6 +1746,8 @@ def generate_container_page() -> str:
                     </tr>
                 </thead>
                 <tbody>
+                    <tr><td><code class="code">xxs</code></td><td>≥ 320px</td><td>320px</td></tr>
+                    <tr><td><code class="code">xs</code></td><td>≥ 360px</td><td>360px</td></tr>
                     <tr><td><code class="code">sm</code></td><td>≥ 576px</td><td>540px</td></tr>
                     <tr><td><code class="code">md</code></td><td>≥ 768px</td><td>720px</td></tr>
                     <tr><td><code class="code">lg</code></td><td>≥ 992px</td><td>960px</td></tr>
@@ -1943,13 +1948,17 @@ def generate_responsive_page() -> str:
                 <div style="padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
                     <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">레이아웃 전환</h3>
                     <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;section class="mobile-vstack desktop-hstack gap-4"&gt;
-  &lt;aside class="mobile-position-static desktop-position-sticky" style="top: 80px;"&gt;
-    사이드바
-  &lt;/aside&gt;
-  &lt;article class="flex-1"&gt;
-    본문 콘텐츠
-  &lt;/article&gt;
-&lt;/section&gt;</code></pre>
+   &lt;div class="w-50 p-3 bg-slate-100"&gt;Desktop 50%&lt;/div&gt;
+   &lt;div class="w-50 p-3 bg-slate-200"&gt;Desktop 50%&lt;/div&gt;
+ &lt;/section&gt;
+ 
+ // SCSS에서 모바일 대응 추가
+ .mobile-vstack &gt; .w-50 {{
+   @include down("md") {{
+     width: 100%;
+   }}
+ }}</code></pre>
+                    <p style="margin-top: 12px; color: #64748b;">반응형으로 전환할 때는 Responsive 접두사 유틸리티나 breakpoint mixin을 함께 사용하세요.</p>
                 </div>
             </div>
         </div>

@@ -18,7 +18,7 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="header__container">
+        <div class="header__container container">
             <a href="#" class="header__logo">Sample Project</a>
             <nav>
                 <ul class="header__nav">
@@ -33,7 +33,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero__container">
+        <div class="hero__container container">
             <h1 class="hero__title">RexBox 사용 예제</h1>
             <p class="hero__subtitle">프로젝트별 커스터마이징과 오버라이드 방법을 보여주는 샘플 프로젝트입니다.</p>
             <a href="#cards" class="hero__button">시작하기</a>
@@ -97,12 +97,25 @@
                     <button class="p-2 rounded border border-primary text-primary">Outline Button</button>
                 </div>
             </div>
+
+            <div style="margin-top: 60px; padding: 32px; background: #eef2ff; border-radius: 8px;">
+                <h3 style="margin-bottom: 16px; font-size: 1.5rem;">Container &amp; Width Utilities</h3>
+                <p style="color: #475569; margin-bottom: 24px;">
+                    <code>container</code>, <code>row</code>, <code>w-*</code> 유틸리티를 조합하면 빠르게 레이아웃을 만들 수 있습니다.
+                    필요하면 <code>--rexbox-row-gap</code> 또는 <code>--rexbox-container-gutter-x</code> 값을 재정의하여 간격을 조정하세요.
+                </p>
+                <div class="row" style="--rexbox-row-gap: 24px;">
+                    <div class="w-25 p-3 rounded bg-white shadow-sm text-center">.w-25</div>
+                    <div class="w-50 p-3 rounded bg-white shadow-sm text-center">.w-50</div>
+                    <div class="flex-1 p-3 rounded bg-white shadow-sm text-center">.flex-1</div>
+                </div>
+            </div>
         </div>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer__container">
+        <div class="footer__container container">
             <div class="footer__content">
                 <div class="footer__section">
                     <h3>About</h3>
