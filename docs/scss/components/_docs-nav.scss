@@ -67,29 +67,12 @@
 
 .docs-nav {
     padding: 16px 0;
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 100px);
-}
-
-.docs-nav-top {
-    padding: 0 20px 12px 20px;
-    border-bottom: 1px solid #e2e8f0;
-    margin-bottom: 12px;
-}
-
-.docs-nav-bottom {
-    padding: 12px 20px 0 20px;
-    border-top: 1px solid #e2e8f0;
-    margin-top: auto;
 }
 
 .docs-nav-list {
     list-style: none;
     margin: 0;
     padding: 0;
-    flex: 1;
-    overflow-y: auto;
 }
 
 .docs-nav-link {

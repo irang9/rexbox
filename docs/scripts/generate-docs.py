@@ -22,6 +22,7 @@ FONTS_VARIABLES_FILE = ROOT_DIR / "fonts" / "_variables.scss"
 # 네비게이션 메뉴
 NAV_ITEMS = [
     {"title": "Home", "url": "index.html"},
+    {"title": "Sample", "url": "sample.html"},
     {"title": "Theme", "url": "theme.html"},
     {"title": "Color Palettes", "url": "color-palettes.html"},
     {"title": "Typography", "url": "typography.html"},
@@ -36,7 +37,6 @@ NAV_ITEMS = [
     {"title": "Responsive", "url": "responsive.html"},
     {"title": "Vertical Rule", "url": "vertical-rule.html"},
     {"title": "Mixins", "url": "mixins.html"},
-    {"title": "Sample", "url": "sample.html"},
 ]
 
 
@@ -58,26 +58,14 @@ def get_navigation(current_page: str = "", page_title: str = "") -> str:
             </a>
         </div>
         <nav class="docs-nav">
-            <div class="docs-nav-top">
-                <a href="index.html" class="docs-nav-link{' active' if current_page == 'index.html' else ''}">Home</a>
-            </div>
             <ul class="docs-nav-list">
     """
-    # Home과 Sample 제외한 항목들
-    for item in NAV_ITEMS[1:-1]:  # Home과 Sample 제외
+    for item in NAV_ITEMS:
         active = ' active' if item["url"] == current_page else ""
         nav_html += f'                <li><a href="{item["url"]}" class="docs-nav-link{active}">{item["title"]}</a></li>\n'
     
     nav_html += """
             </ul>
-            <div class="docs-nav-bottom">
-                <a href="sample.html" class="docs-nav-link"""
-    
-    if current_page == "sample.html":
-        nav_html += ' active'
-    
-    nav_html += """">Sample</a>
-            </div>
         </nav>
     </aside>
     """
@@ -2843,12 +2831,12 @@ def generate_sample_page() -> str:
         
         <div class="section">
             <h2 class="section-title">Stacks</h2>
-            <div class="stack stack-horizontal gap-3 mb-4">
+            <div class="hstack gap-3 mb-4">
                 <div class="bg-primary text-white p-3 rounded">Item 1</div>
                 <div class="bg-primary text-white p-3 rounded">Item 2</div>
                 <div class="bg-primary text-white p-3 rounded">Item 3</div>
             </div>
-            <div class="stack stack-vertical gap-2">
+            <div class="vstack gap-2">
                 <div class="bg-secondary text-white p-3 rounded">Item 1</div>
                 <div class="bg-secondary text-white p-3 rounded">Item 2</div>
                 <div class="bg-secondary text-white p-3 rounded">Item 3</div>
