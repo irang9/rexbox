@@ -16,7 +16,7 @@
 // ============================================
 // 2. Theme import (config의 변수로 오버라이드)
 // ============================================
-// config에서 정의한 변수들을 theme에 전달하여 오버라이드합니다.
+// config에서 정의한 변수들(Semantic Names 및 Step Value Preset)을 theme에 전달하여 오버라이드합니다.
 // 주의: 프로젝트별 폰트 변수는 theme에 전달하지 않고, config에서 직접 사용합니다.
 @use '../../rexbox/theme' as * with ($primary: config.$primary,
     $primary-light: config.$primary-light,

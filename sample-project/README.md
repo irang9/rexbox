@@ -79,9 +79,15 @@ start index.html     # Windows
 @use '../../rexbox/variables' as *;
 @use '../../rexbox/breakpoints' as *;
 
+// Semantic Names (의미 기반 색상)
 $primary: #ff6b6b;
 $secondary: #4ecdc4;
 $point: #ffd93d;
+
+// Step Value Preset (스텝별 색상값 프리셋)
+$primary-100: #ffe0e0;
+$primary-200: #ffc7c7;
+// ... (100~900 단계별 정의)
 
 $section-padding: 60px;
 $card-gap: 24px;
@@ -90,10 +96,14 @@ $card-gap: 24px;
 ```scss
 // main.scss (발췌)
 @use '../../rexbox/theme' as * with (
+  // Semantic Names
   $primary: config.$primary,
   $secondary: config.$secondary,
   $point: config.$point,
-  ...
+  // Step Value Preset
+  $primary-100: config.$primary-100,
+  $primary-200: config.$primary-200,
+  // ... (필요한 단계만 전달)
 );
 ```
 
