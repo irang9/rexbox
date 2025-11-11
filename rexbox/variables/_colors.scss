@@ -25,11 +25,11 @@
 // 따라서 기본값으로는 약간 조정된 색상을 사용하고,
 // 필요시에만 순수 색상을 사용하도록 합니다.
 
-$white: #FCFCFC;           // 기본 흰색 (조정된 색상)
-$white-real: #ffffff;      // 순수 흰색 (필요시 사용)
+$white: #ffffff;           // 순수 흰색
+$white-soft: #FCFCFC;      // 조정된 흰색 (기본 배경용)
 
-$black: #212121;           // 기본 검은색 (조정된 색상)
-$black-real: #000000;      // 순수 검은색 (필요시 사용)
+$black: #000000;           // 순수 검은색
+$black-soft: #212121;      // 조정된 검은색 (기본 텍스트용)
 
 // preline slate
 $slate-50: #f8fafc;

@@ -43,7 +43,7 @@
     @return 0.2126 * $r +0.7152 * $g +0.0722 * $b;
 }
 
-@function rexbox-contrast-color($background, $light: $white-real, $dark: $text-primary) {
+@function rexbox-contrast-color($background, $light: $white, $dark: $text-primary) {
     $luma: rexbox-relative-luminance($background);
 
     @if $luma < 0.5 {
@@ -54,11 +54,11 @@
 }
 
 @function rexbox-subtle-color($base, $weight: 85%) {
-    @return color.mix($white-real, $base, $weight);
+    @return color.mix($white, $base, $weight);
 }
 
 @function rexbox-emphasis-color($base) {
-    @return color.mix($base, $black, 30%);
+    @return color.mix($base, $black-soft, 30%);
 }
 
 $rexbox-semantic-colors: (
@@ -82,8 +82,8 @@ $rexbox-bg-neutrals: (
     "subtle": $bg-subtle,
     "default": $bg-default,
     "dark": $bg-dark,
-    "white": $white-real,
-    "black": $black,
+    "white": $white,
+    "black": $black-soft,
     "transparent": transparent,
 );
 
@@ -94,8 +94,8 @@ $rexbox-text-base: (
     "muted": color.mix($text-secondary, $text-primary, 40%),
     "disabled": $text-disabled,
     "inverse": $text-inverse,
-    "white": $white-real,
-    "black": $black,
+    "white": $white,
+    "black": $black-soft,
     "link": $link,
     "link-hover": $link-hover,
 );

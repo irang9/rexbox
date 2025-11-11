@@ -113,11 +113,11 @@ $border-color: $border-default; // theme에서 정의된 기본 border 색상
 }
 
 .border-white {
-    border-color: vars.$white-real !important;
+    border-color: vars.$white !important;
 }
 
 .border-black {
-    border-color: vars.$black !important;
+    border-color: vars.$black-soft !important;
 }
 
 // Stock/Finance specific

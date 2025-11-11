@@ -1158,6 +1158,64 @@ def generate_typography_page() -> str:
         <p class="subtitle">폰트 크기 및 굵기 설정값</p>
         
         <div class="section">
+            <h2 class="section-title">Utility Classes</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">RexBox는 Typography 관련 유틸리티 클래스를 제공합니다.</p>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin: 24px 0 12px 0; color: #1e293b;">Font Size Classes</h3>
+            <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">폰트 크기를 지정하는 유틸리티 클래스입니다.</p>
+            <div style="display: grid; gap: 8px; margin-bottom: 16px;">
+                <code class="code">.fs-3xs</code> - 가장 작은 폰트 크기<br>
+                <code class="code">.fs-2xs</code> - 매우 작은 폰트 크기<br>
+                <code class="code">.fs-xs</code> - 작은 폰트 크기<br>
+                <code class="code">.fs-sm</code> - 작은 폰트 크기<br>
+                <code class="code">.fs-base</code> - 기본 폰트 크기<br>
+                <code class="code">.fs-lg</code> - 큰 폰트 크기<br>
+                <code class="code">.fs-xl</code> - 매우 큰 폰트 크기<br>
+                <code class="code">.fs-2xl</code> ~ <code class="code">.fs-9xl</code> - 점진적으로 큰 폰트 크기
+            </div>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin: 24px 0 12px 0; color: #1e293b;">Font Weight Classes</h3>
+            <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">폰트 굵기를 지정하는 유틸리티 클래스입니다.</p>
+            <div style="display: grid; gap: 8px; margin-bottom: 16px;">
+                <code class="code">.fw-light</code> - 300 (Light)<br>
+                <code class="code">.fw-normal</code> - 400 (Normal)<br>
+                <code class="code">.fw-medium</code> - 500 (Medium)<br>
+                <code class="code">.fw-semibold</code> - 600 (Semibold)<br>
+                <code class="code">.fw-bold</code> - 700 (Bold)<br>
+                <code class="code">.fw-black</code> - 900 (Black)
+            </div>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin: 24px 0 12px 0; color: #1e293b;">Font Family Classes</h3>
+            <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">폰트 패밀리를 지정하는 유틸리티 클래스입니다.</p>
+            <div style="display: grid; gap: 8px; margin-bottom: 24px;">
+                <code class="code">.ff-basic</code> - 기본 폰트 패밀리<br>
+                <code class="code">.ff-monospace</code> - 고정폭 폰트 패밀리
+            </div>
+            
+            <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;p class="fs-lg fw-bold"&gt;큰 굵은 텍스트&lt;/p&gt;
+&lt;span class="fs-sm fw-medium"&gt;작은 중간 굵기 텍스트&lt;/span&gt;
+&lt;code class="ff-monospace fs-base"&gt;고정폭 폰트&lt;/code&gt;</code></pre>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">rem() 함수 사용법</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">RexBox는 <code class="code">rem()</code> 함수를 제공하여 px 값을 rem으로 변환합니다. <code class="code">rem(12)</code>를 작성하면 12px에 해당하는 rem 값(0.75rem)으로 변환됩니다.</p>
+            
+            <div style="padding: 20px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 16px;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">사용 예시</h3>
+                <div style="display: grid; gap: 8px; margin-bottom: 12px; font-size: 14px;">
+                    <div><code class="code">font-size: rem(12);</code> → <code class="code">font-size: 0.75rem;</code> (12px)</div>
+                    <div><code class="code">font-size: rem(16);</code> → <code class="code">font-size: 1rem;</code> (16px)</div>
+                    <div><code class="code">font-size: rem(24);</code> → <code class="code">font-size: 1.5rem;</code> (24px)</div>
+                </div>
+                <p style="margin-top: 12px; color: #64748b; font-size: 13px;">
+                    <strong>참고:</strong> <code class="code">rem()</code> 함수는 입력된 px 값을 16으로 나누어 rem 값으로 변환합니다. 
+                    기본 폰트 크기가 16px이므로, <code class="code">rem(16)</code>은 <code class="code">1rem</code> (16px)이 됩니다.
+                </p>
+            </div>
+        </div>
+        
+        <div class="section">
             <h2 class="section-title">Font Sizes</h2>
             <table>
                 <thead>
@@ -1165,6 +1223,7 @@ def generate_typography_page() -> str:
                         <th>변수명</th>
                         <th>rem 값</th>
                         <th>px 값</th>
+                        <th>Utility Class</th>
                         <th>사용 예시</th>
                     </tr>
                 </thead>
@@ -1176,11 +1235,13 @@ def generate_typography_page() -> str:
     for size_key in size_order:
         if size_key in typo["sizes"]:
             size_info = typo["sizes"][size_key]
+            utility_class = f"fs-{size_key}"
             content += f"""
                     <tr>
                         <td><code class="code">$font-size-{size_key}</code></td>
                         <td><code class="code">{size_info["rem"]}</code></td>
                         <td><code class="code">{size_info["px"]}px</code></td>
+                        <td><code class="code">.{utility_class}</code></td>
                         <td style="font-size: {size_info["rem"]};">예시 텍스트</td>
                     </tr>
             """
@@ -1197,6 +1258,7 @@ def generate_typography_page() -> str:
                     <tr>
                         <th>변수명</th>
                         <th>값</th>
+                        <th>Utility Class</th>
                         <th>사용 예시</th>
                     </tr>
                 </thead>
@@ -1208,10 +1270,12 @@ def generate_typography_page() -> str:
         if weight_key in typo["weights"]:
             value = typo["weights"][weight_key]
             font_weight = int(value)
+            utility_class = f"fw-{weight_key}"
             content += f"""
                     <tr>
                         <td><code class="code">$font-weight-{weight_key}</code></td>
                         <td><code class="code">{value}</code></td>
+                        <td><code class="code">.{utility_class}</code></td>
                         <td style="font-weight: {font_weight};">예시 텍스트</td>
                     </tr>
             """
