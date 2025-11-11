@@ -890,6 +890,37 @@ def generate_colors_page() -> str:
             <h2 class="section-title">색상 유틸리티 사용 방법</h2>
             <p style="margin-bottom: 16px; color: #64748b;">RexBox는 두 가지 방식으로 색상 유틸리티를 사용할 수 있습니다:</p>
             
+            <div style="margin-bottom: 24px; padding: 20px; background: #eff6ff; border-radius: 8px; border: 1px solid #bfdbfe;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e40af;">📌 언제 무엇을 사용해야 할까요?</h3>
+                <div style="display: grid; gap: 12px; font-size: 14px; color: #1e40af;">
+                    <div>
+                        <strong style="color: #1e3a8a;">Semantic Names 사용 권장:</strong>
+                        <ul style="margin: 8px 0 0 20px; color: #1e40af;">
+                            <li>일반적인 UI 컴포넌트 (버튼, 카드, 배너 등)</li>
+                            <li>프로젝트 전체에서 일관된 색상이 필요한 경우</li>
+                            <li>테마 변경 시 쉽게 유지보수하고 싶은 경우</li>
+                            <li>예: <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-primary</code>, <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-primary-subtle</code></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong style="color: #1e3a8a;">Step Values 사용 권장:</strong>
+                        <ul style="margin: 8px 0 0 20px; color: #1e40af;">
+                            <li>세밀한 색상 조정이 필요한 경우</li>
+                            <li>특정 디자인 요구사항에 맞춰 정확한 색상값이 필요한 경우</li>
+                            <li>그라데이션이나 복잡한 색상 조합이 필요한 경우</li>
+                            <li>예: <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-primary-200</code>, <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-slate-300</code></li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 8px; padding: 12px; background: #fff; border-radius: 6px; border: 1px solid #bfdbfe;">
+                        <strong style="color: #dc2626;">⚠️ 주의:</strong>
+                        <p style="margin: 8px 0 0 0; color: #991b1b; font-size: 13px;">
+                            <code class="code">.bg-primary</code>와 <code class="code">.bg-primary-500</code>는 같은 색상을 사용할 수 있습니다. 
+                            일반적으로는 <code class="code">.bg-primary</code>를 사용하고, 세밀한 조정이 필요할 때만 Step Values를 사용하세요.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
             <div style="display: grid; gap: 24px;">
                 <div style="padding: 20px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
                     <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">1. Semantic Names (의미 기반 색상)</h3>
