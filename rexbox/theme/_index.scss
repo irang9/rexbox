@@ -95,7 +95,7 @@ $point-900: $green-900 !default;
 // ============================================
 $success: $green-500;
 $warning: $yellow-500;
-$error: $red-500;
+$danger: $red-500; // Bootstrap 표준
 $info: $blue-500;
 
 // Stock/Finance State Colors (도메인 특화)

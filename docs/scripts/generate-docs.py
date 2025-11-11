@@ -590,7 +590,7 @@ def generate_colors_page() -> str:
             border_colors.append(item)
         elif semantic_name in ['primary', 'secondary', 'point']:
             brand_colors.append(item)
-        elif semantic_name in ['success', 'warning', 'error', 'info']:
+        elif semantic_name in ['success', 'warning', 'danger', 'info']:
             state_colors.append(item)
         elif semantic_name in ['positive', 'negative', 'neutral', 'stock-up', 'stock-down', 'stock-neutral', 'stock-positive', 'stock-negative', 'value-red', 'value-blue', 'gapup', 'gapdown']:
             stock_colors.append(item)
@@ -913,7 +913,7 @@ def generate_colors_page() -> str:
                             <li>그라데이션이나 복잡한 색상 조합이 필요한 경우</li>
                             <li>예: <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-primary-200</code>, <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-slate-300</code></li>
                         </ul>
-                    </div>
+                </div>
                     <div style="margin-top: 8px; padding: 12px; background: #fff; border-radius: 6px; border: 1px solid #bfdbfe;">
                         <strong style="color: #dc2626;">⚠️ 주의:</strong>
                         <p style="margin: 8px 0 0 0; color: #991b1b; font-size: 13px;">
@@ -965,7 +965,7 @@ def generate_colors_page() -> str:
                 </div>
             </div>
         </div>
-    """
+        """
     
     # Color Palettes (원시 색상 팔레트 - 가장 하단으로 이동)
     content += """
@@ -1797,7 +1797,7 @@ def extract_borders() -> Dict[str, List[str]]:
         borders["width"].append(match.group(1))
     
     # Border Color
-    pattern = r'\.(border-(?:primary|secondary|success|warning|error|danger|info|light|dark|white|black|positive|negative|neutral))\s*{'
+    pattern = r'\.(border-(?:primary|secondary|success|warning|danger|info|light|dark|white|black|positive|negative|neutral))\s*{'
     matches = re.finditer(pattern, content)
     for match in matches:
         borders["color"].append(match.group(1))
@@ -1889,8 +1889,7 @@ def generate_borders_page() -> str:
                     <tr><td><code class="code">.border-secondary</code></td><td>Secondary 색상</td><td><code class="code">&lt;div class="border border-secondary"&gt;</code></td></tr>
                     <tr><td><code class="code">.border-success</code></td><td>Success 색상</td><td><code class="code">&lt;div class="border border-success"&gt;</code></td></tr>
                     <tr><td><code class="code">.border-warning</code></td><td>Warning 색상</td><td><code class="code">&lt;div class="border border-warning"&gt;</code></td></tr>
-                    <tr><td><code class="code">.border-error</code></td><td>Error 색상</td><td><code class="code">&lt;div class="border border-error"&gt;</code></td></tr>
-                    <tr><td><code class="code">.border-danger</code></td><td>Danger 색상 (error와 동일)</td><td><code class="code">&lt;div class="border border-danger"&gt;</code></td></tr>
+                    <tr><td><code class="code">.border-danger</code></td><td>Danger 색상</td><td><code class="code">&lt;div class="border border-danger"&gt;</code></td></tr>
                     <tr><td><code class="code">.border-info</code></td><td>Info 색상</td><td><code class="code">&lt;div class="border border-info"&gt;</code></td></tr>
                     <tr><td><code class="code">.border-light</code></td><td>Light 색상</td><td><code class="code">&lt;div class="border border-light"&gt;</code></td></tr>
                     <tr><td><code class="code">.border-dark</code></td><td>Dark 색상</td><td><code class="code">&lt;div class="border border-dark"&gt;</code></td></tr>
@@ -2876,7 +2875,7 @@ def generate_buttons_page() -> str:
                 <tbody>
     """
     
-    variants = ["primary", "secondary", "success", "warning", "error", "danger", "info", "point"]
+    variants = ["primary", "secondary", "success", "warning", "danger", "info", "point"]
     for variant in variants:
         content += f"""
                     <tr>
@@ -3038,7 +3037,7 @@ def generate_buttons_page() -> str:
 &lt;button class="btn btn-primary btn-active"&gt;Active Button&lt;/button&gt;
 &lt;button class="btn btn-link"&gt;Link Button&lt;/button&gt;</code></pre>
         </div>
-    """
+        """
     
     return content
 

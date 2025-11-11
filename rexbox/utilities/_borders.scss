@@ -95,9 +95,8 @@ $border-color: $border-default; // theme에서 정의된 기본 border 색상
     border-color: $warning !important;
 }
 
-.border-error,
 .border-danger {
-    border-color: $error !important;
+    border-color: $danger !important;
 }
 
 .border-info {
