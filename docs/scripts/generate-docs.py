@@ -30,6 +30,7 @@ NAV_ITEMS = [
     {"title": "Width", "url": "width.html"},
     {"title": "Container", "url": "container.html"},
     {"title": "Borders", "url": "borders.html"},
+    {"title": "Buttons", "url": "buttons.html"},
     {"title": "Stacks", "url": "stacks.html"},
     {"title": "Responsive", "url": "responsive.html"},
     {"title": "Vertical Rule", "url": "vertical-rule.html"},
@@ -832,6 +833,52 @@ def generate_colors_page() -> str:
 
 &lt;span class="text-primary"&gt;링크 및 포인트 컬러&lt;/span&gt;
 &lt;span class="text-muted"&gt;보조 텍스트&lt;/span&gt;</code></pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">색상 유틸리티 사용 방법</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">RexBox는 두 가지 방식으로 색상 유틸리티를 사용할 수 있습니다:</p>
+            
+            <div style="display: grid; gap: 24px;">
+                <div style="padding: 20px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">1. 기능 이름 (Semantic Colors)</h3>
+                    <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">의미 있는 색상 이름을 사용합니다. 프로젝트별로 색상 값을 오버라이드할 수 있어 유지보수가 용이합니다.</p>
+                    <div style="display: grid; gap: 8px; margin-bottom: 12px;">
+                        <code class="code">.bg-primary</code> - Primary 배경색
+                        <code class="code">.text-primary</code> - Primary 텍스트 색상
+                        <code class="code">.border-primary</code> - Primary 테두리 색상
+                        <code class="code">.bg-primary-light</code> - 옅은 Primary 배경색
+                        <code class="code">.bg-primary-subtle</code> - 미묘한 Primary 배경색
+                    </div>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 12px; border-radius: 4px; overflow-x: auto; font-size: 12px; line-height: 1.6; margin: 0;"><code>&lt;div class="bg-primary text-white"&gt;Primary 배경&lt;/div&gt;
+&lt;span class="text-primary"&gt;Primary 텍스트&lt;/span&gt;
+&lt;div class="border border-primary"&gt;Primary 테두리&lt;/div&gt;</code></pre>
+                </div>
+                
+                <div style="padding: 20px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">2. 색상값 (Color Palette)</h3>
+                    <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">주요 색상(Slate, Primary, Secondary, Point)에 한해 단계별 색상값을 직접 사용할 수 있습니다. 더 세밀한 색상 조정이 가능합니다.</p>
+                    <div style="display: grid; gap: 8px; margin-bottom: 12px;">
+                        <code class="code">.bg-slate-200</code> - Slate 200 배경색
+                        <code class="code">.text-primary-600</code> - Primary 600 텍스트 색상
+                        <code class="code">.border-secondary-300</code> - Secondary 300 테두리 색상
+                        <code class="code">.bg-point-100</code> - Point 100 배경색
+                    </div>
+                    <div style="margin-bottom: 12px; padding: 12px; background: #fff7ed; border-radius: 6px; border: 1px solid #fed7aa;">
+                        <p style="margin: 0; color: #92400e; font-size: 13px;"><strong>사용 가능한 색상:</strong></p>
+                        <ul style="margin: 8px 0 0 0; padding-left: 20px; color: #92400e; font-size: 13px;">
+                            <li><strong>Slate:</strong> 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950</li>
+                            <li><strong>Primary:</strong> 100, 200, 300, 400, 500, 600, 700, 800, 900</li>
+                            <li><strong>Secondary:</strong> 100, 200, 300, 400, 500, 600, 700, 800, 900</li>
+                            <li><strong>Point:</strong> 100, 200, 300, 400, 500, 600, 700, 800, 900</li>
+                        </ul>
+                    </div>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 12px; border-radius: 4px; overflow-x: auto; font-size: 12px; line-height: 1.6; margin: 0;"><code>&lt;div class="bg-slate-100 text-slate-800"&gt;Slate 색상&lt;/div&gt;
+&lt;span class="text-primary-600"&gt;Primary 600 텍스트&lt;/span&gt;
+&lt;div class="border border-secondary-300"&gt;Secondary 300 테두리&lt;/div&gt;
+&lt;button class="btn bg-primary-200 border-primary-500"&gt;옅은 Primary 버튼&lt;/button&gt;</code></pre>
+                </div>
             </div>
         </div>
     """
@@ -2559,6 +2606,255 @@ def generate_mixins_page() -> str:
 
 
 # ============================================
+# Buttons 페이지
+# ============================================
+
+BUTTONS_FILE = ROOT_DIR / "utilities" / "_buttons.scss"
+
+def extract_buttons() -> Dict[str, List[str]]:
+    """Buttons 파일에서 버튼 유틸리티를 추출합니다."""
+    buttons = {
+        "variants": [],
+        "sizes": [],
+        "states": [],
+        "palette": {"slate": [], "primary": [], "secondary": [], "point": []}
+    }
+    
+    if not BUTTONS_FILE.exists():
+        return buttons
+    
+    with open(BUTTONS_FILE, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # 기본 variants 추출
+    variant_pattern = r'\.btn-([a-z]+)\s*\{'
+    variants = re.findall(variant_pattern, content)
+    buttons["variants"] = [v for v in variants if v not in ["outline", "ghost", "link", "sm", "lg", "disabled", "active"]]
+    
+    # Sizes 추출
+    if ".btn-sm" in content:
+        buttons["sizes"].append("sm")
+    if ".btn-lg" in content:
+        buttons["sizes"].append("lg")
+    
+    # States 추출
+    if ".btn-disabled" in content or ".btn:disabled" in content:
+        buttons["states"].append("disabled")
+    if ".btn-active" in content:
+        buttons["states"].append("active")
+    
+    # Palette variants 추출
+    palette_patterns = {
+        "slate": r'\.btn-slate-(\d+)',
+        "primary": r'\.btn-primary-(\d+)',
+        "secondary": r'\.btn-secondary-(\d+)',
+        "point": r'\.btn-point-(\d+)'
+    }
+    
+    for palette_name, pattern in palette_patterns.items():
+        steps = sorted(set(re.findall(pattern, content)), key=lambda x: int(x))
+        buttons["palette"][palette_name] = steps
+    
+    return buttons
+
+
+def generate_buttons_page() -> str:
+    """Buttons 페이지 생성"""
+    buttons_data = extract_buttons()
+    
+    content = """
+        <h1>Buttons</h1>
+        <p class="subtitle">Bootstrap 스타일의 버튼 유틸리티 클래스</p>
+        
+        <div class="section">
+            <h2 class="section-title">기본 버튼</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">모든 버튼은 <code class="code">.btn</code> 기본 클래스를 필요로 합니다.</p>
+            <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;button class="btn btn-primary"&gt;Primary Button&lt;/button&gt;
+&lt;a href="#" class="btn btn-secondary"&gt;Secondary Link&lt;/a&gt;</code></pre>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">버튼 Variants (색상)</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">Semantic 색상을 사용한 버튼 variants입니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                        <th>예시</th>
+                    </tr>
+                </thead>
+                <tbody>
+    """
+    
+    variants = ["primary", "secondary", "success", "warning", "error", "danger", "info", "point"]
+    for variant in variants:
+        content += f"""
+                    <tr>
+                        <td><code class="code">.btn-{variant}</code></td>
+                        <td>{variant.capitalize()} 색상 버튼</td>
+                        <td><button class="btn btn-{variant}" style="pointer-events: none;">{variant.capitalize()}</button></td>
+                    </tr>
+        """
+    
+    content += """
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Outline Variants</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">배경이 투명하고 테두리와 텍스트만 색상이 적용된 버튼입니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                    </tr>
+                </thead>
+                <tbody>
+    """
+    
+    for variant in variants:
+        content += f"""
+                    <tr>
+                        <td><code class="code">.btn-outline-{variant}</code></td>
+                        <td>{variant.capitalize()} 색상 outline 버튼</td>
+                    </tr>
+        """
+    
+    content += """
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Ghost Variants</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">배경과 테두리가 모두 투명하고 텍스트만 색상이 적용된 버튼입니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                    </tr>
+                </thead>
+                <tbody>
+    """
+    
+    for variant in variants:
+        content += f"""
+                    <tr>
+                        <td><code class="code">.btn-ghost-{variant}</code></td>
+                        <td>{variant.capitalize()} 색상 ghost 버튼</td>
+                    </tr>
+        """
+    
+    content += """
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">단계별 색상 버튼 (Palette Variants)</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">주요 색상(Slate, Primary, Secondary, Point)의 단계별 색상값을 사용한 버튼입니다.</p>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin: 24px 0 12px 0; color: #1e293b;">Slate</h3>
+            <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">사용 가능한 단계: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950</p>
+            <div style="display: grid; gap: 8px; margin-bottom: 24px;">
+                <code class="code">.btn-slate-{step}</code> - Solid 버튼<br>
+                <code class="code">.btn-outline-slate-{step}</code> - Outline 버튼<br>
+                <code class="code">.btn-ghost-slate-{step}</code> - Ghost 버튼
+            </div>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin: 24px 0 12px 0; color: #1e293b;">Primary</h3>
+            <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">사용 가능한 단계: 100, 200, 300, 400, 500, 600, 700, 800, 900</p>
+            <div style="display: grid; gap: 8px; margin-bottom: 24px;">
+                <code class="code">.btn-primary-{step}</code> - Solid 버튼<br>
+                <code class="code">.btn-outline-primary-{step}</code> - Outline 버튼<br>
+                <code class="code">.btn-ghost-primary-{step}</code> - Ghost 버튼
+            </div>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin: 24px 0 12px 0; color: #1e293b;">Secondary</h3>
+            <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">사용 가능한 단계: 100, 200, 300, 400, 500, 600, 700, 800, 900</p>
+            <div style="display: grid; gap: 8px; margin-bottom: 24px;">
+                <code class="code">.btn-secondary-{step}</code> - Solid 버튼<br>
+                <code class="code">.btn-outline-secondary-{step}</code> - Outline 버튼<br>
+                <code class="code">.btn-ghost-secondary-{step}</code> - Ghost 버튼
+            </div>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin: 24px 0 12px 0; color: #1e293b;">Point</h3>
+            <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">사용 가능한 단계: 100, 200, 300, 400, 500, 600, 700, 800, 900</p>
+            <div style="display: grid; gap: 8px; margin-bottom: 24px;">
+                <code class="code">.btn-point-{step}</code> - Solid 버튼<br>
+                <code class="code">.btn-outline-point-{step}</code> - Outline 버튼<br>
+                <code class="code">.btn-ghost-point-{step}</code> - Ghost 버튼
+            </div>
+            
+            <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin-top: 16px;"><code>&lt;button class="btn btn-primary-100"&gt;옅은 Primary&lt;/button&gt;
+&lt;button class="btn btn-outline-primary-500"&gt;Outline Primary-500&lt;/button&gt;
+&lt;button class="btn btn-ghost-secondary-300"&gt;Ghost Secondary-300&lt;/button&gt;
+&lt;button class="btn btn-slate-200"&gt;Slate 200&lt;/button&gt;</code></pre>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">버튼 크기</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code class="code">.btn-sm</code></td>
+                        <td>작은 크기 버튼</td>
+                    </tr>
+                    <tr>
+                        <td><code class="code">.btn-lg</code></td>
+                        <td>큰 크기 버튼</td>
+                    </tr>
+                </tbody>
+            </table>
+            <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin-top: 16px;"><code>&lt;button class="btn btn-primary btn-sm"&gt;Small Button&lt;/button&gt;
+&lt;button class="btn btn-primary"&gt;Default Button&lt;/button&gt;
+&lt;button class="btn btn-primary btn-lg"&gt;Large Button&lt;/button&gt;</code></pre>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">버튼 상태</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code class="code">.btn-disabled</code> 또는 <code class="code">:disabled</code></td>
+                        <td>비활성화된 버튼</td>
+                    </tr>
+                    <tr>
+                        <td><code class="code">.btn-active</code></td>
+                        <td>활성 상태 버튼</td>
+                    </tr>
+                    <tr>
+                        <td><code class="code">.btn-link</code></td>
+                        <td>링크 스타일 버튼</td>
+                    </tr>
+                </tbody>
+            </table>
+            <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin-top: 16px;"><code>&lt;button class="btn btn-primary disabled"&gt;Disabled Button&lt;/button&gt;
+&lt;button class="btn btn-primary btn-active"&gt;Active Button&lt;/button&gt;
+&lt;button class="btn btn-link"&gt;Link Button&lt;/button&gt;</code></pre>
+        </div>
+    """
+    
+    return content
+
+
+# ============================================
 # Index 페이지 (Home)
 # ============================================
 
@@ -2644,6 +2940,12 @@ def main():
     borders_content = generate_borders_page()
     with open(DOCS_DIR / "borders.html", 'w', encoding='utf-8') as f:
         f.write(generate_html_page("Borders", borders_content, "borders.html"))
+    
+    # Buttons 페이지
+    print("  - buttons.html 생성 중...")
+    buttons_content = generate_buttons_page()
+    with open(DOCS_DIR / "buttons.html", 'w', encoding='utf-8') as f:
+        f.write(generate_html_page("Buttons", buttons_content, "buttons.html"))
     
     # Stacks 페이지
     print("  - stacks.html 생성 중...")

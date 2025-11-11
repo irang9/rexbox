@@ -113,8 +113,11 @@ $secondary: #4ecdc4;
 - **선택적 폰트**: 프로젝트별 `fonts/` 디렉토리에서 관리 (Gmarket, Google Fonts 등)
 
 ### Utilities (유틸리티 클래스)
-- **Borders**: Border 추가/제거, width, color, radius, opacity
-- **Colors**: `.text-*`, `.bg-*`, `.bg-*-subtle`, `.text-bg-*` 등 semantic 색상 유틸리티
+- **Borders**: Border 추가/제거, width, color, radius, opacity. 단계별 색상 지원 (`.border-slate-200`, `.border-primary-500` 등)
+- **Buttons**: Bootstrap 스타일의 버튼 유틸리티. Solid, Outline, Ghost variants 및 단계별 색상 지원
+- **Colors**: 
+  - Semantic 색상: `.text-*`, `.bg-*`, `.bg-*-subtle`, `.text-bg-*` 등
+  - 단계별 색상: `.bg-slate-200`, `.text-primary-600`, `.border-secondary-300` 등 (Slate, Primary, Secondary, Point)
 - **Display**: Display 유틸리티
 - **Flex**: Flexbox 유틸리티
 - **Width**: `.w-25`, `.w-50`, `.w-100`, `.w-fit`, `.w-max` 등 백분율/콘텐츠 기반 너비
@@ -130,88 +133,7 @@ $secondary: #4ecdc4;
 - [온라인 문서](https://irang9.github.io/rexbox/) - 모든 변수와 설정값 확인
 - [Sample Project](../sample-project/) - 사용 예제
 
-## 🎯 사용 예시
-
-### 색상 사용
-```scss
-.button {
-    background-color: $primary;
-    color: white;
-    border: 1px solid $border-default;
-}
-```
-
-### Breakpoint 사용
-```scss
-.container {
-    padding: 16px;
-    
-    @include up("md") {
-        padding: 24px;  // 768px 이상
-    }
-    
-    @include down("sm") {
-        padding: 12px;  // 575.98px 이하
-    }
-}
-```
-
-### Mixin 사용
-```scss
-.card {
-    @include rounded-lg;
-    @include transition(transform 0.2s);
-    
-    &:hover {
-        transform: translateY(-4px);
-    }
-}
-```
-
-### Utility Classes 사용
-```html
-<div class="border border-primary rounded-lg p-4">
-    <div class="hstack gap-3">
-        <span>Item 1</span>
-        <div class="vr"></div>
-        <span>Item 2</span>
-    </div>
-</div>
-```
-
-### Color Utilities 사용
-```html
-<button class="text-bg-primary border-0">Primary Action</button>
-<span class="bg-success-subtle text-success px-3 py-2 rounded">Success badge</span>
-<p class="text-muted">보조 텍스트</p>
-```
-
-### Container / Row 사용
-```html
-<div class="container">
-    <header class="py-4 border-bottom">Header</header>
-    <div class="row" style="--rexbox-row-gap: 32px;">
-        <aside class="flex-1 p-3 bg-slate-100 rounded">Sidebar</aside>
-        <main class="flex-2 p-3 bg-white rounded shadow-sm">Main Content</main>
-    </div>
-</div>
-```
-
-### Responsive Utilities 사용
-```html
-<header class="mobile-only p-3 bg-primary text-white">
-    모바일에서만 보이는 배너
-</header>
-
-<section class="mobile-vstack desktop-hstack gap-4">
-    <aside class="mobile-position-static desktop-position-sticky" style="top: 80px;">
-        사이드바
-    </aside>
-    <article class="flex-1">
-        본문 콘텐츠
-    </article>
-</section>
-```
+자세한 사용 예시는 [온라인 문서](https://irang9.github.io/rexbox/)를 참고하세요.
 
 ## 🔧 커스터마이징
 

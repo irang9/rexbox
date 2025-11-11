@@ -65,7 +65,30 @@ $primary-800: $blue-800 !default;
 $primary-900: $blue-900 !default;
 
 $secondary: $cyan-500 !default; // 기본값: #29c0ff (프로젝트별 오버라이드 가능)
+
+// Secondary 색상 계열 (더 세분화된 계층)
+$secondary-100: $cyan-100 !default;
+$secondary-200: $cyan-200 !default;
+$secondary-300: $cyan-300 !default;
+$secondary-400: $cyan-400 !default;
+$secondary-500: $cyan-500 !default;
+$secondary-600: $cyan-600 !default;
+$secondary-700: $cyan-700 !default;
+$secondary-800: $cyan-800 !default;
+$secondary-900: $cyan-900 !default;
+
 $point: $green-500 !default; // 포인트/강조 색상 (기본값: #00b25f)
+
+// Point 색상 계열 (더 세분화된 계층)
+$point-100: $green-100 !default;
+$point-200: $green-200 !default;
+$point-300: $green-300 !default;
+$point-400: $green-400 !default;
+$point-500: $green-500 !default;
+$point-600: $green-600 !default;
+$point-700: $green-700 !default;
+$point-800: $green-800 !default;
+$point-900: $green-900 !default;
 
 // ============================================
 // State Colors

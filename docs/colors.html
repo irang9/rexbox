@@ -320,6 +320,7 @@
                 <li><a href="width.html">Width</a></li>
                 <li><a href="container.html">Container</a></li>
                 <li><a href="borders.html">Borders</a></li>
+                <li><a href="buttons.html">Buttons</a></li>
                 <li><a href="stacks.html">Stacks</a></li>
                 <li><a href="responsive.html">Responsive</a></li>
                 <li><a href="vertical-rule.html">Vertical Rule</a></li>
@@ -2755,6 +2756,52 @@
 
 &lt;span class="text-primary"&gt;링크 및 포인트 컬러&lt;/span&gt;
 &lt;span class="text-muted"&gt;보조 텍스트&lt;/span&gt;</code></pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">색상 유틸리티 사용 방법</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">RexBox는 두 가지 방식으로 색상 유틸리티를 사용할 수 있습니다:</p>
+            
+            <div style="display: grid; gap: 24px;">
+                <div style="padding: 20px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">1. 기능 이름 (Semantic Colors)</h3>
+                    <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">의미 있는 색상 이름을 사용합니다. 프로젝트별로 색상 값을 오버라이드할 수 있어 유지보수가 용이합니다.</p>
+                    <div style="display: grid; gap: 8px; margin-bottom: 12px;">
+                        <code class="code">.bg-primary</code> - Primary 배경색
+                        <code class="code">.text-primary</code> - Primary 텍스트 색상
+                        <code class="code">.border-primary</code> - Primary 테두리 색상
+                        <code class="code">.bg-primary-light</code> - 옅은 Primary 배경색
+                        <code class="code">.bg-primary-subtle</code> - 미묘한 Primary 배경색
+                    </div>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 12px; border-radius: 4px; overflow-x: auto; font-size: 12px; line-height: 1.6; margin: 0;"><code>&lt;div class="bg-primary text-white"&gt;Primary 배경&lt;/div&gt;
+&lt;span class="text-primary"&gt;Primary 텍스트&lt;/span&gt;
+&lt;div class="border border-primary"&gt;Primary 테두리&lt;/div&gt;</code></pre>
+                </div>
+                
+                <div style="padding: 20px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">2. 색상값 (Color Palette)</h3>
+                    <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">주요 색상(Slate, Primary, Secondary, Point)에 한해 단계별 색상값을 직접 사용할 수 있습니다. 더 세밀한 색상 조정이 가능합니다.</p>
+                    <div style="display: grid; gap: 8px; margin-bottom: 12px;">
+                        <code class="code">.bg-slate-200</code> - Slate 200 배경색
+                        <code class="code">.text-primary-600</code> - Primary 600 텍스트 색상
+                        <code class="code">.border-secondary-300</code> - Secondary 300 테두리 색상
+                        <code class="code">.bg-point-100</code> - Point 100 배경색
+                    </div>
+                    <div style="margin-bottom: 12px; padding: 12px; background: #fff7ed; border-radius: 6px; border: 1px solid #fed7aa;">
+                        <p style="margin: 0; color: #92400e; font-size: 13px;"><strong>사용 가능한 색상:</strong></p>
+                        <ul style="margin: 8px 0 0 0; padding-left: 20px; color: #92400e; font-size: 13px;">
+                            <li><strong>Slate:</strong> 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950</li>
+                            <li><strong>Primary:</strong> 100, 200, 300, 400, 500, 600, 700, 800, 900</li>
+                            <li><strong>Secondary:</strong> 100, 200, 300, 400, 500, 600, 700, 800, 900</li>
+                            <li><strong>Point:</strong> 100, 200, 300, 400, 500, 600, 700, 800, 900</li>
+                        </ul>
+                    </div>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 12px; border-radius: 4px; overflow-x: auto; font-size: 12px; line-height: 1.6; margin: 0;"><code>&lt;div class="bg-slate-100 text-slate-800"&gt;Slate 색상&lt;/div&gt;
+&lt;span class="text-primary-600"&gt;Primary 600 텍스트&lt;/span&gt;
+&lt;div class="border border-secondary-300"&gt;Secondary 300 테두리&lt;/div&gt;
+&lt;button class="btn bg-primary-200 border-primary-500"&gt;옅은 Primary 버튼&lt;/button&gt;</code></pre>
+                </div>
             </div>
         </div>
     

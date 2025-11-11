@@ -186,3 +186,126 @@ $rexbox-bg-colors: map.merge($rexbox-bg-neutrals, $rexbox-semantic-colors);
 .bg-reset {
     background-color: transparent !important;
 }
+
+// ============================================
+// Slate Color Palette Utilities
+// ============================================
+// Slate는 원시 색상으로 모든 단계에 대해 유틸리티 제공
+$slate-palette: (
+    "50": $slate-50,
+    "100": $slate-100,
+    "200": $slate-200,
+    "300": $slate-300,
+    "400": $slate-400,
+    "500": $slate-500,
+    "600": $slate-600,
+    "700": $slate-700,
+    "800": $slate-800,
+    "900": $slate-900,
+    "950": $slate-950,
+);
+
+@each $step, $color in $slate-palette {
+    .bg-slate-#{$step} {
+        background-color: $color !important;
+        color: rexbox-contrast-color($color) !important;
+    }
+
+    .text-slate-#{$step} {
+        color: $color !important;
+    }
+
+    .border-slate-#{$step} {
+        border-color: $color !important;
+    }
+}
+
+// ============================================
+// Primary Color Palette Utilities
+// ============================================
+$primary-palette: (
+    "100": $primary-100,
+    "200": $primary-200,
+    "300": $primary-300,
+    "400": $primary-400,
+    "500": $primary-500,
+    "600": $primary-600,
+    "700": $primary-700,
+    "800": $primary-800,
+    "900": $primary-900,
+);
+
+@each $step, $color in $primary-palette {
+    .bg-primary-#{$step} {
+        background-color: $color !important;
+        color: rexbox-contrast-color($color) !important;
+    }
+
+    .text-primary-#{$step} {
+        color: $color !important;
+    }
+
+    .border-primary-#{$step} {
+        border-color: $color !important;
+    }
+}
+
+// ============================================
+// Secondary Color Palette Utilities
+// ============================================
+$secondary-palette: (
+    "100": $secondary-100,
+    "200": $secondary-200,
+    "300": $secondary-300,
+    "400": $secondary-400,
+    "500": $secondary-500,
+    "600": $secondary-600,
+    "700": $secondary-700,
+    "800": $secondary-800,
+    "900": $secondary-900,
+);
+
+@each $step, $color in $secondary-palette {
+    .bg-secondary-#{$step} {
+        background-color: $color !important;
+        color: rexbox-contrast-color($color) !important;
+    }
+
+    .text-secondary-#{$step} {
+        color: $color !important;
+    }
+
+    .border-secondary-#{$step} {
+        border-color: $color !important;
+    }
+}
+
+// ============================================
+// Point Color Palette Utilities
+// ============================================
+$point-palette: (
+    "100": $point-100,
+    "200": $point-200,
+    "300": $point-300,
+    "400": $point-400,
+    "500": $point-500,
+    "600": $point-600,
+    "700": $point-700,
+    "800": $point-800,
+    "900": $point-900,
+);
+
+@each $step, $color in $point-palette {
+    .bg-point-#{$step} {
+        background-color: $color !important;
+        color: rexbox-contrast-color($color) !important;
+    }
+
+    .text-point-#{$step} {
+        color: $color !important;
+    }
+
+    .border-point-#{$step} {
+        border-color: $color !important;
+    }
+}
