@@ -539,7 +539,7 @@ def generate_colors_page() -> str:
             border_colors.append(item)
         elif semantic_name in ['primary', 'secondary', 'point']:
             brand_colors.append(item)
-        elif semantic_name in ['success', 'warning', 'error', 'info', 'valid', 'invalid']:
+        elif semantic_name in ['success', 'warning', 'error', 'info']:
             state_colors.append(item)
         elif semantic_name in ['positive', 'negative', 'neutral', 'stock-up', 'stock-down', 'stock-neutral', 'stock-positive', 'stock-negative', 'value-red', 'value-blue', 'gapup', 'gapdown']:
             stock_colors.append(item)

@@ -74,6 +74,35 @@ $point-700: $yellow-700;
 $point-800: $yellow-800;
 $point-900: $yellow-900;
 
+// Slate 색상 (원시 색상 변수)
+// Slate는 원시 색상 변수이므로 variables를 직접 오버라이드할 수 있습니다.
+// Step Value Preset으로 사용 가능합니다 (예: .bg-slate-200, .text-slate-600).
+// 필요시 아래 주석을 해제하고 색상값을 정의하세요.
+// $slate-50: #f8fafc;
+// $slate-100: #f1f5f9;
+// $slate-200: #e2e8f0;
+// ... (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950)
+
+// State Colors (상태 색상)
+// State Colors도 오버라이드할 수 있습니다. 원시 색상 변수나 직접 색상값을 사용할 수 있습니다.
+// 예시: $success: $green-500; 또는 $success: #22c55e;
+// 필요시 아래 주석을 해제하고 색상값을 정의하세요.
+// $success: $green-500;
+// $warning: $yellow-500;
+// $error: $red-500;
+// $info: $blue-500;
+
+// Stock/Finance State Colors (주식/금융 상태 색상)
+// Stock Colors도 오버라이드할 수 있습니다. 원시 색상 변수나 직접 색상값을 사용할 수 있습니다.
+// 예시: $positive: $red-500; 또는 $positive: #ef4444;
+// 필요시 아래 주석을 해제하고 색상값을 정의하세요.
+// $positive: $red-500;
+// $negative: $blue-600;
+// $neutral: $gray-500;
+// $stock-positive: $positive;
+// $stock-negative: $negative;
+// $stock-neutral: $neutral;
+
 // ============================================
 // 3. 선택적 폰트 설정 (프로젝트별 fonts에서 관리)
 // ============================================
