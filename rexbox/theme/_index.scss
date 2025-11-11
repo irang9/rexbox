@@ -1,13 +1,19 @@
 @charset "utf-8";
 
 // ============================================
-// Semantic Colors (Theme/Preset)
+// Theme Colors (Semantic Colors)
 // ============================================
-// 실제 사용 목적별 색상 매핑
-// 원시 색상 팔레트(variables/_colors.scss)를 기반으로 정의합니다.
-
-@use '../variables/colors' as *;
-
+// RexBox의 색상 시스템은 Semantic Color와 Step Value를 통합적으로 제공합니다.
+//
+// 핵심 개념:
+// 1. Semantic Color: 의미 기반 색상 (예: $primary, $slate)
+// 2. Step Value: 같은 색상의 세분화된 단계 (예: $primary-500, $slate-600)
+//
+// 예를 들어:
+// - $primary는 $primary-600의 별칭입니다 (기본값)
+// - $slate는 $slate-500의 별칭입니다 (기본값)
+// - .bg-primary와 .bg-primary-600는 같은 색상을 사용합니다
+//
 // 사용법:
 // @use '../../rexbox' as *;  // 모든 변수와 테마 포함
 // 또는
@@ -15,12 +21,112 @@
 // @use '../../rexbox/theme' as *;
 //
 // 예시:
-// background-color: $bg-light;     // $yellow-200 사용
-// color: $text-primary;            // $black-soft 사용
+// background-color: $primary;        // Semantic Color 사용
+// background-color: $primary-600;    // Step Value 사용 (같은 색상)
+// background-color: $primary-200;    // 더 밝은 단계 사용
+
+@use '../variables/colors' as *;
+
+// ============================================
+// Brand Colors (Semantic)
+// ============================================
+// 프로젝트의 브랜드 색상입니다. 프로젝트별로 오버라이드 가능합니다.
+// 각 색상은 Semantic Name과 Step Values를 모두 제공합니다.
+//
+// Semantic Name: $primary, $secondary, $point
+// Step Values: $primary-100 ~ $primary-900 (같은 색상의 세분화된 단계)
+//
+// 주의: 프로젝트별로 다른 색상을 사용할 수 있으므로
+// 필요시 각 프로젝트에서 오버라이드하거나 별도로 정의하세요
+// !default를 사용하여 프로젝트에서 오버라이드 가능하도록 함
+
+// Primary Color
+$primary: $blue-600 !default; // Semantic Name (기본값: $primary-600와 동일)
+$primary-light: $blue-400 !default;
+$primary-dark: $blue-800 !default;
+
+// Primary Step Values (100~900: 밝은 색 → 어두운 색)
+$primary-100: $blue-100 !default;
+$primary-200: $blue-200 !default;
+$primary-300: $blue-300 !default;
+$primary-400: $blue-400 !default;
+$primary-500: $blue-500 !default;
+$primary-600: $blue-600 !default; // 기본값 (Semantic Name $primary와 동일)
+$primary-700: $blue-700 !default;
+$primary-800: $blue-800 !default;
+$primary-900: $blue-900 !default;
+
+// Secondary Color
+$secondary: $cyan-500 !default; // Semantic Name (기본값: $secondary-500와 동일)
+
+// Secondary Step Values (100~900: 밝은 색 → 어두운 색)
+$secondary-100: $cyan-100 !default;
+$secondary-200: $cyan-200 !default;
+$secondary-300: $cyan-300 !default;
+$secondary-400: $cyan-400 !default;
+$secondary-500: $cyan-500 !default; // 기본값 (Semantic Name $secondary와 동일)
+$secondary-600: $cyan-600 !default;
+$secondary-700: $cyan-700 !default;
+$secondary-800: $cyan-800 !default;
+$secondary-900: $cyan-900 !default;
+
+// Point Color (강조/포인트 색상)
+$point: $green-500 !default; // Semantic Name (기본값: $point-500와 동일)
+
+// Point Step Values (100~900: 밝은 색 → 어두운 색)
+$point-100: $green-100 !default;
+$point-200: $green-200 !default;
+$point-300: $green-300 !default;
+$point-400: $green-400 !default;
+$point-500: $green-500 !default; // 기본값 (Semantic Name $point와 동일)
+$point-600: $green-600 !default;
+$point-700: $green-700 !default;
+$point-800: $green-800 !default;
+$point-900: $green-900 !default;
+
+// ============================================
+// Neutral Color System (Gray/Neutral)
+// ============================================
+// 무채색(neutral) 용도로 사용되는 기본 색상 시스템입니다.
+// Slate를 기본 무채색으로 사용하며, Semantic Name과 Step Values를 모두 제공합니다.
+//
+// Semantic Name: $slate (기본값: $slate-500)
+// Step Values: $slate-50 ~ $slate-950 (더 세분화된 단계, 50~950 사용)
+
+$slate: $slate-500 !default; // Semantic Name (기본값: $slate-500와 동일)
+// Step Values는 variables/_colors.scss에 정의되어 있습니다:
+// $slate-50, $slate-100, $slate-200, $slate-300, $slate-400,
+// $slate-500 (기본값, Semantic Name $slate와 동일),
+// $slate-600, $slate-700, $slate-800, $slate-900, $slate-950
+
+// ============================================
+// State Colors
+// ============================================
+// UI 상태를 나타내는 색상입니다.
+$success: $green-500;
+$warning: $yellow-500;
+$danger: $red-500; // Bootstrap 표준
+$info: $blue-500;
+
+// ============================================
+// Stock/Finance State Colors (도메인 특화)
+// ============================================
+// 주식/금융 도메인에서 사용하는 상태 색상입니다.
+// 주의: 프로젝트별로 다른 색상을 사용할 수 있으므로 오버라이드 가능
+$positive: $red-500; // 상승/긍정 (기본값: #ff4848)
+$negative: $blue-600; // 하락/부정 (기본값: #3c4e9b)
+$neutral: $slate-500; // 중립 (기본값: $slate와 동일)
+
+// Stock aliases
+$stock-neutral: $neutral;
+$stock-positive: $positive;
+$stock-negative: $negative;
 
 // ============================================
 // Background Colors
 // ============================================
+// 배경색 용도로 사용되는 semantic 색상입니다.
+// 주로 Neutral Color System (slate)을 기반으로 합니다.
 $bg-light: $slate-50; // 밝은 배경
 $bg-subtle: $slate-100; // 미묘한 배경
 $bg-default: $white-soft; // 기본 배경 (조정된 흰색)
@@ -30,6 +136,8 @@ $bg-dark: $slate-900; // 어두운 배경
 // ============================================
 // Text Colors
 // ============================================
+// 텍스트 색상 용도로 사용되는 semantic 색상입니다.
+// 주로 Neutral Color System (slate)을 기반으로 합니다.
 $text-primary: $black-soft; // 주요 텍스트 (조정된 검은색)
 $text-secondary: $slate-600; // 보조 텍스트
 $text-tertiary: $slate-400; // 3차 텍스트
@@ -39,91 +147,26 @@ $text-inverse: $white-soft; // 반전 텍스트 (어두운 배경용)
 // ============================================
 // Border Colors
 // ============================================
+// 테두리 색상 용도로 사용되는 semantic 색상입니다.
+// 주로 Neutral Color System (slate)을 기반으로 합니다.
 $border-light: $slate-200; // 밝은 테두리
 $border-default: $slate-300; // 기본 테두리
 $border-dark: $slate-500; // 어두운 테두리
 
 // ============================================
-// Brand Colors (Semantic)
-// ============================================
-// 주의: primary, secondary 등은 프로젝트별로 다를 수 있으므로
-// 필요시 각 프로젝트에서 오버라이드하거나 별도로 정의하세요
-// !default를 사용하여 프로젝트에서 오버라이드 가능하도록 함
-$primary: $blue-600 !default;
-$primary-light: $blue-400 !default;
-$primary-dark: $blue-800 !default;
-
-// Primary 색상 계열 (더 세분화된 계층)
-$primary-100: $blue-100 !default;
-$primary-200: $blue-200 !default;
-$primary-300: $blue-300 !default;
-$primary-400: $blue-400 !default;
-$primary-500: $blue-500 !default;
-$primary-600: $blue-600 !default;
-$primary-700: $blue-700 !default;
-$primary-800: $blue-800 !default;
-$primary-900: $blue-900 !default;
-
-$secondary: $cyan-500 !default; // 기본값: #29c0ff (프로젝트별 오버라이드 가능)
-
-// Secondary 색상 계열 (더 세분화된 계층)
-$secondary-100: $cyan-100 !default;
-$secondary-200: $cyan-200 !default;
-$secondary-300: $cyan-300 !default;
-$secondary-400: $cyan-400 !default;
-$secondary-500: $cyan-500 !default;
-$secondary-600: $cyan-600 !default;
-$secondary-700: $cyan-700 !default;
-$secondary-800: $cyan-800 !default;
-$secondary-900: $cyan-900 !default;
-
-$point: $green-500 !default; // 포인트/강조 색상 (기본값: #00b25f)
-
-// Point 색상 계열 (더 세분화된 계층)
-$point-100: $green-100 !default;
-$point-200: $green-200 !default;
-$point-300: $green-300 !default;
-$point-400: $green-400 !default;
-$point-500: $green-500 !default;
-$point-600: $green-600 !default;
-$point-700: $green-700 !default;
-$point-800: $green-800 !default;
-$point-900: $green-900 !default;
-
-// Slate 색상 (Semantic)
-// 무채색(neutral) 용도로 사용되는 기본 색상
-// slate-500를 기본값으로 하며, 프로젝트별로 오버라이드 가능
-$slate: $slate-500 !default;
-
-// ============================================
-// State Colors
-// ============================================
-$success: $green-500;
-$warning: $yellow-500;
-$danger: $red-500; // Bootstrap 표준
-$info: $blue-500;
-
-// Stock/Finance State Colors (도메인 특화)
-// 주의: 프로젝트별로 다른 색상을 사용할 수 있으므로 오버라이드 가능
-$positive: $red-500; // 상승/긍정 (기본값: #ff4848)
-$negative: $blue-600; // 하락/부정 (기본값: #3c4e9b)
-$neutral: $slate-500; // 중립 (기본값: #64748b)
-
-// Stock aliases
-$stock-neutral: $neutral;
-$stock-positive: $positive;
-$stock-negative: $negative;
-
-// ============================================
 // Link Colors
 // ============================================
+// 링크 색상 용도로 사용되는 semantic 색상입니다.
 // 주의: 프로젝트별로 다른 색상을 사용할 수 있으므로 오버라이드 가능
 $link: $blue-600; // 기본값: #263fb0
 $link-hover: $blue-700;
 $link-visited: $purple-600;
 $link-point: $blue-500; // 링크 포인트 색상 (기본값: #4262f7)
 
+// ============================================
 // UI Element Colors
+// ============================================
+// UI 요소에 사용되는 특정 색상입니다.
 $pager-active: $blue-600; // 페이지네이션 활성 색상 (기본값: #6f83ce)
 $button-dark: $slate-800; // 기본값: #1e293b
 $button-dark-hover: $slate-900; // 기본값: #0f172a
